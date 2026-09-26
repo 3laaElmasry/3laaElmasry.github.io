@@ -58,8 +58,8 @@
   transition: object-position 6s linear;
 }
 
-.project-card:hover .browser-frame__img,
-.project-card:focus-within .browser-frame__img {
+.chat__bubble--card:hover .browser-frame__img,
+.chat__bubble--card:focus-within .browser-frame__img {
   object-position: bottom center;
 }
 

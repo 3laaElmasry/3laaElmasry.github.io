@@ -10,7 +10,6 @@ import { About } from './components/About.js';
 import { Contact } from './components/Contact.js';
 import { Footer } from './components/Footer.js';
 import { WhatsAppFab } from './components/WhatsAppFab.js';
-import { ProjectModal, initProjectModal } from './components/ProjectModal.js';
 import { initReveal } from './utils/reveal.js';
 import { initCounters } from './utils/counter.js';
 
@@ -31,7 +30,6 @@ export function renderApp(lang) {
     </main>
     ${Footer(lang)}
     ${WhatsAppFab(lang)}
-    ${ProjectModal(lang)}
   `;
 
   initNavbar(lang);
@@ -39,7 +37,6 @@ export function renderApp(lang) {
   initStatsStrip();
   initWork(lang);
   initServices();
-  initProjectModal(lang);
   initReveal();
   initCounters();
 }
