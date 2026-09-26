@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "crop-hero": "node scripts/crop-hero.mjs",
-    "screenshot-projects": "node scripts/screenshot-projects.mjs"
+    "screenshot-projects": "node scripts/screenshot-projects.mjs",
+    "screenshot-themes": "node scripts/screenshot-themes.mjs"
   },
   "devDependencies": {
     "vite": "^5.4.0",

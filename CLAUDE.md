@@ -4,6 +4,14 @@ You are building a personal portfolio website for **Alaa Elmasry**, a Shopify de
 
 ---
 
+## Status: live
+
+The site is built and deployed at **https://3laaelmasry.github.io/** (repo: `3laaElmasry/3laaElmasry.github.io`). Phases 0–7 below are complete.
+
+This file is kept up to date as the **current** source of truth, not just the original brief — sections 3 and 4 in particular reflect owner-requested changes made after the initial launch (project order, the navbar logo, and which sections are carousels vs. static cards). `DECISIONS.md` has the full chronological history, including approaches that were tried and then reverted (e.g. a chat-interface redesign of the Work section, reverted back to cards because the owner didn't like it).
+
+---
+
 ## 0. Operating mode: work autonomously, end to end
 
 - The owner has pre-approved this whole task. **Do not stop to ask for confirmation** between phases. Make sensible decisions, note them in `DECISIONS.md`, and keep going.
@@ -161,13 +169,17 @@ B.Sc. Business Information Systems, **Benha University** (expected 2027). AR: ب
 
 ### Display order and layout
 
-1. **Rull Clothes**: *featured*. It gets a full-width, large card with desktop and mobile screenshots side by side.
-2. **Fakhmestaa**
-3. **Naila**
-4. **Al Mosaad (EMTOP)**
-5. **Alrajhi Industry**
+**Current (owner-requested, 2026-09-26):**
+
+1. **Al Mosaad (EMTOP)**: *featured*. It gets a full-width, large card with desktop and mobile screenshots side by side. It has no hard metric, so the card shows its qualitative highlight ("Official EMTOP importer") in the large accent slot instead of a number.
+2. **Alrajhi Industry**
+3. **Rull Clothes**
+4. **Naila**
+5. **Fakhmestaa**
 
 Projects 2–5 go in a 2×2 grid on desktop and 1 column on mobile.
+
+> Originally Rull Clothes was featured first (it has the flashiest number, ×5 sales) and the order was Rull → Fakhmestaa → Naila → Al Mosaad → Alrajhi. The owner explicitly asked for the order above instead, and confirmed Al Mosaad should keep the featured full-width treatment despite having no hard number. If the order changes again, remember the featured slot's component (`FeaturedProject.js`) must handle both the "has a `metric`" and "highlight-only" cases — see `ProjectCard.js`'s same ternary for the pattern.
 
 ### Project data
 
@@ -245,33 +257,38 @@ Put this in `src/data/projects.js` as structured data with `en` and `ar` fields.
 
 ## 4. Site structure (sections in order)
 
-1. **Navbar** (sticky, blurred dark glass). Logo "Alaa." · links: Work · Services · Engineering · About · Contact · language toggle `ع / EN` · WhatsApp button. Mobile: hamburger with a full-screen menu.
+> **Carousels (owner-requested, 2026-09-26):** every section below that lists multiple repeated cards is a horizontally scrollable carousel (scroll-snap track + prev/next buttons, via the shared `utils/carousel.js` / `components/CarouselNav.js` / `styles/components/carousel.css`), **except Selected Work (`#work`)**, which the owner explicitly wants to stay as static cards (featured card + grid + story modal) — it is the one deliberate exception. This applies to: Stats strip, Services, Process, Engineering's proof row / Skills / Dev Projects, About's Timeline and its Markets/Education pair, and Contact's 3 cards.
+
+1. **Navbar** (sticky, blurred dark glass). Logo "Elmasry." (changed from "Alaa." per owner request) · links: Work · Services · Engineering · About · Contact · language toggle `ع / EN` · WhatsApp button. Mobile: hamburger with a full-screen menu.
 2. **Hero**
-   - Left: availability pill with a pulsing green dot: "Available for new projects" / "متاح لمشاريع جديدة"
+   - The portrait renders *first* in the markup (owner request: "photo at the beginning"), with the text content after it. Because CSS Grid places track 1 at the inline-start side, this puts the portrait at the top on mobile (single column) and on the reading-start side per language on desktop — right in Arabic, left in English. The column-width ratio is flipped to match (text column keeps the larger share either way).
+   - Availability pill with a pulsing green dot: "Available for new projects" / "متاح لمشاريع جديدة"
    - Headline:
      - EN: **"I build Shopify stores that sell."**
      - AR: **"ببني متاجر Shopify بتبيع… مش بس شكلها حلو."**
    - Sub (EN): "Custom-coded, conversion-focused stores for brands across Egypt, Saudi Arabia & the Gulf."
    - Sub (AR): "متاجر مبرمجة مخصوص ومبنية على الكونفرجن، لبراندات في مصر والسعودية والخليج."
    - CTAs: primary "Start your project on WhatsApp" / "ابدأ مشروعك على واتساب", secondary "See my work" / "شوف شغلي" (scrolls to #work).
-   - Quick-jump chips under the CTAs (idea from the reference's quick replies): `×5 Rull Clothes` · `1000+ orders` · `Built in 3 days`. Each one scrolls to that project and highlights it.
-   - Right: the hero portrait (section 5) with a soft accent glow behind it and 2 floating mini "stat badges" (e.g. `20+ Brands`, `99% Satisfaction`).
-3. **Stats strip**: 4 counters that animate once when visible: `20+` Brands · `20K+` Followers · `5x` Sales growth · `1000+` Orders.
-4. **Brands marquee**: an infinite, slow scrolling row of the 5 brand names in stylized text (no fake logos). It pauses on hover and is disabled with `prefers-reduced-motion`.
-5. **Selected Work (`#work`)**: section 3. Title: "Selected Work" / "شغل مختار". Subtitle: "Real brands. Real numbers." / "براندات حقيقية. أرقام حقيقية."
-6. **Services (`#services`)**: 4 cards:
+   - Quick-jump chips under the CTAs (idea from the reference's quick replies): `×5 Rull Clothes` · `1000+ orders` · `Built in 3 days`. Each one scrolls to and highlights that project's card (`Hero.js`'s `initHero` looks up `[data-project-id="..."]` and toggles `.project-card--highlight`).
+   - The hero portrait (section 5) with a soft accent glow behind it and 2 floating mini "stat badges" (e.g. `20+ Brands`, `99% Satisfaction`).
+3. **Stats strip**: 4 counters that animate once when visible: `20+` Brands · `20K+` Followers · `5x` Sales growth · `1000+` Orders. Now a carousel (see note above); the counter animation still works because `initCounters()` observes `[data-counter]` elements regardless of the scroll container.
+4. **Brands marquee**: an infinite, slow scrolling row of the 5 brand names in stylized text (no fake logos). It pauses on hover and is disabled with `prefers-reduced-motion`. (Not a carousel — it's already a continuous scroll.)
+5. **Selected Work (`#work`)**: section 3. Title: "Selected Work" / "شغل مختار". Subtitle: "Real brands. Real numbers." / "براندات حقيقية. أرقام حقيقية." **Stays as static cards — the one section excluded from the carousel conversion.** (A chat-bot redesign of this section was tried and explicitly rejected by the owner; see `DECISIONS.md`. Do not re-attempt it without being asked.)
+6. **Services (`#services`)**: 4 cards, now a carousel. Each card shows a real screenshot of a free Shopify Theme Store demo (Dawn, Craft, Sense, Origin) above the icon/title/description — **never a Shopify logo**. The image uses a plain top-fade treatment, deliberately not the `BrowserFrame` browser-chrome-plus-domain treatment used for real client projects, so visitors don't mistake a generic theme demo for client work.
    - Custom Shopify Store Build / بناء متجر Shopify من الصفر
    - Redesign & Rebrand / ريديزاين للمتجر
    - Sales Funnel & CRO / فانل وتحسين التحويل
    - Custom Liquid Sections (no app bloat) / سكشنز Liquid مخصوصة من غير تطبيقات تقيلة
-7. **Process (`#process`)**: 4 numbered steps on a connected line: Understand the brand → Design → Build → Launch & Optimize.
+7. **Process (`#process`)**: 4 numbered steps, now a carousel (the connected-line-between-steps visual from the original design didn't survive the conversion to a scrollable row).
 8. **Engineering Edge (`#engineering`)**. Title: "Engineer first. Shopify developer second." / "مهندس برمجيات قبل ما أكون مطوّر Shopify." Sub: "Why my stores are faster and cleaner than app-stacked templates." / "ليه متاجري أسرع وأنضف من التمبلتس المليانة تطبيقات." Contents, in this order:
-   - **Proof row** of 3 mini stats: `300+` problems solved (LeetCode · Codewars · Codeforces) · `+25%` product-match relevance at Weja · `−30%` error reports at Weja.
-   - **Experience card**: Weja Company with the 4 bullets.
-   - **Skills**: grouped chips (see "Skills" in section 2).
-   - **Dev projects**: 4 compact code-style cards (dark card, mono font, a small `</>` or terminal header). Each card has the name, a one-line description, stack chips, and GitHub ↗ / Live ↗ links. These must look clearly *secondary* to the Shopify project cards.
+   - **Proof row** of 3 mini stats: `300+` problems solved (LeetCode · Codewars · Codeforces) · `+25%` product-match relevance at Weja · `−30%` error reports at Weja. Now a carousel.
+   - **Experience card**: Weja Company with the 4 bullets. Stays a single static card (nothing to paginate with one item).
+   - **Skills**: grouped chips (see "Skills" in section 2). Now a carousel (one group per slide).
+   - **Dev projects**: 4 compact code-style cards (dark card, mono font, a small `</>` or terminal header). Each card has the name, a one-line description, stack chips, and GitHub ↗ / Live ↗ links. These must look clearly *secondary* to the Shopify project cards. Now a carousel.
 9. **About (`#about`)**: the journey timeline (section 2), the engineering-depth differentiator, the markets served, and education. Include a smaller second crop of the portrait, or reuse the hero image.
-10. **Final CTA + Contact (`#contact`)**: big line: "Your store should be selling more. Let's fix that." / "متجرك المفروض يبيع أكتر. يلا نصلّح ده." Contact cards for WhatsApp (#25D366 icon), Email, and Phone, plus a social icons row (Instagram, TikTok, Facebook, LinkedIn, GitHub).
+   - The **Timeline** is now a carousel of horizontal numbered cards (year + text), not the original vertical connected-line list — the "journey" metaphor changed shape, but the owner's carousel request was explicit and unqualified.
+   - The **Markets served / Education** pair is also a small 2-item carousel.
+10. **Final CTA + Contact (`#contact`)**: big line: "Your store should be selling more. Let's fix that." / "متجرك المفروض يبيع أكتر. يلا نصلّح ده." Contact cards for WhatsApp (#25D366 icon), Email, and Phone — now a carousel — plus a social icons row (Instagram, TikTok, Facebook, LinkedIn, GitHub), which stays a plain row.
 11. **Footer**: © year, "Alaa Elmasry / علاء المصري", socials, "Built by Alaa".
 12. **Floating WhatsApp button** (bottom corner; it mirrors in RTL).
 
@@ -390,7 +407,8 @@ Moody, confident, and tech-forward. Lots of breathing room and big type. The acc
 ├── assets/hero.jpg              # ORIGINAL (do not modify)
 ├── scripts/
 │   ├── crop-hero.mjs
-│   └── screenshot-projects.mjs
+│   ├── screenshot-projects.mjs
+│   └── screenshot-themes.mjs    # captures Shopify Theme Store demo screenshots for Services
 ├── public/
 │   ├── favicon.svg
 │   ├── og-image.jpg             # 1200×630, name + title + portrait
@@ -399,7 +417,7 @@ Moody, confident, and tech-forward. Lots of breathing room and big type. The acc
     ├── main.js                  # bootstraps: i18n → render sections → init effects
     ├── app.js                   # composes sections in order
     ├── data/
-    │   ├── site.js              # name, title, contact, WhatsApp messages
+    │   ├── site.js              # name, title, logoText ("Elmasry."), contact, WhatsApp messages
     │   ├── projects.js
     │   ├── stats.js
     │   ├── services.js
@@ -432,11 +450,14 @@ Moody, confident, and tech-forward. Lots of breathing room and big type. The acc
     │   ├── About.js
     │   ├── Contact.js
     │   ├── Footer.js
-    │   └── WhatsAppFab.js
+    │   ├── WhatsAppFab.js
+    │   └── CarouselNav.js       # shared prev/next button markup for every carousel
     ├── utils/
     │   ├── dom.js
     │   ├── reveal.js            # IntersectionObserver reveals
     │   ├── counter.js
+    │   ├── carousel.js          # shared scroll-snap prev/next wiring, RTL-aware
+    │   ├── images.js            # import.meta.glob loaders for project + theme screenshots
     │   ├── whatsapp.js          # builds wa.me links per language
     │   └── icons.js             # inline SVG icons (socials, arrows, WhatsApp)
     ├── styles/
@@ -448,7 +469,7 @@ Moody, confident, and tech-forward. Lots of breathing room and big type. The acc
     │   ├── utilities.css
     │   ├── animations.css
     │   └── components/
-    │       ├── navbar.css  hero.css  stats.css  marquee.css
+    │       ├── navbar.css  hero.css  stats.css  marquee.css  carousel.css
     │       ├── work.css  project-card.css  browser-frame.css  modal.css
     │       ├── services.css  process.css  engineering.css  dev-project-card.css
     │       ├── timeline.css  about.css  contact.css
@@ -456,8 +477,11 @@ Moody, confident, and tech-forward. Lots of breathing room and big type. The acc
     └── assets/
         └── images/
             ├── hero/            # cropped outputs
-            └── projects/        # screenshots (desktop + mobile per brand)
+            ├── projects/        # screenshots (desktop + mobile per brand)
+            └── themes/          # Shopify Theme Store demo screenshots (Services cards)
 ```
+
+**Shared carousel pattern:** every carousel on the site (Stats, Services, Process, Engineering's proof/Skills/Dev-Projects, About's Timeline/meta, Contact) is built from the same three pieces — `utils/carousel.js`'s `initCarousel(trackId)`, `components/CarouselNav.js`'s prev/next button markup, and `styles/components/carousel.css`'s `.carousel-track` / `.carousel-nav` / `.carousel-head` classes. When adding a new carousel, reuse these rather than writing another bespoke implementation. A CSS Grid or Flex container whose single/first track is a bare `1fr` (not `minmax(0, 1fr)`) will let a carousel's wide content force the whole page to overflow horizontally — this bit twice during development (see `DECISIONS.md`); always use `minmax(0, ...)` for any track that contains a `.carousel-track`.
 
 ---
 
