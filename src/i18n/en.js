@@ -62,6 +62,7 @@ export const en = {
     subtitle: 'What I actually build.',
     prev: 'Previous services',
     next: 'Next services',
+    themeImageAlt: 'Example Shopify theme storefront',
     items: {
       build: {
         title: 'Custom Shopify Store Build',

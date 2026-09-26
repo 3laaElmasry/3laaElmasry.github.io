@@ -2,6 +2,7 @@ import { t } from '../i18n/index.js';
 import { icon } from '../utils/icons.js';
 import { services } from '../data/services.js';
 import { qs, qsa } from '../utils/dom.js';
+import { getThemeImage } from '../utils/images.js';
 
 export function Services(lang) {
   return `
@@ -27,9 +28,14 @@ export function Services(lang) {
             .map(
               (service) => `
             <article class="service-card">
-              <div class="service-card__icon" aria-hidden="true">${icon(service.icon)}</div>
-              <h3 class="service-card__title">${t(`services.items.${service.id}.title`)}</h3>
-              <p class="service-card__description">${t(`services.items.${service.id}.description`)}</p>
+              <div class="service-card__media">
+                <img src="${getThemeImage(service.themeImage)}" alt="${t('services.themeImageAlt')}" loading="lazy" class="service-card__theme-img" />
+              </div>
+              <div class="service-card__body">
+                <div class="service-card__icon" aria-hidden="true">${icon(service.icon)}</div>
+                <h3 class="service-card__title">${t(`services.items.${service.id}.title`)}</h3>
+                <p class="service-card__description">${t(`services.items.${service.id}.description`)}</p>
+              </div>
             </article>
           `
             )

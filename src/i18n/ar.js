@@ -62,6 +62,7 @@ export const ar = {
     subtitle: 'اللي فعلاً بعمله.',
     prev: 'الخدمة السابقة',
     next: 'الخدمة التالية',
+    themeImageAlt: 'مثال لواجهة متجر Shopify',
     items: {
       build: {
         title: 'بناء متجر Shopify من الصفر',
