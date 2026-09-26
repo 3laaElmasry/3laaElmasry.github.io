@@ -37,7 +37,7 @@ export const projects = [
     },
     result: {
       en: 'The brand stayed competitive and grew sales 5x, turning far more visits into paying customers.',
-      ar: 'البراند قدر يكمل في السوق و ضاعف مبيعاته 5 أضعاف، وحوّل عدد أكبر بكتير من الزيارات لعملاء فعليين.',
+      ar: 'البراند قدر يكمل في السوق وضاعف مبيعاته 5 أضعاف، وحوّل زيارات أكتر بكتير لعملاء بيشتروا فعلاً.',
     },
   },
   {
@@ -68,7 +68,7 @@ export const projects = [
     },
     challenge: {
       en: 'Reaching a broad, mass-market Egyptian audience that buys with confidence only when the experience feels familiar and simple.',
-      ar: 'الوصول لجمهور مصري واسع وشعبي، بيشتري بثقة بس لما التجربة تكون مألوفة وبسيطة.',
+      ar: 'الوصول لجمهور شعبي وواسع في مصر، بيشتري بثقة بس لما التجربة تكون بسيطة ومألوفة.',
     },
     whatIBuilt: {
       en: 'A full funnel written and designed to speak the language of the mass-market customer: clear offers and discounts, WhatsApp order confirmation, local payment (InstaPay), and fast-delivery messaging.',
@@ -107,7 +107,7 @@ export const projects = [
     },
     challenge: {
       en: 'The owner wanted to launch immediately, with no time for a long build cycle.',
-      ar: 'المالكة كانت عايزة تبدأ فورًا، من غير وقت لدورة بناء طويلة.',
+      ar: 'المطلوب كان الإطلاق فورًا، من غير وقت لدورة بناء طويلة.',
     },
     whatIBuilt: {
       en: 'A complete, elegant store with collections, best sellers, video product showcases, and seasonal campaign sections, delivered from zero to live.',

@@ -63,11 +63,11 @@ export const en = {
       build: {
         title: 'Custom Shopify Store Build',
         description:
-          'A store built from scratch around your brand and your customer, not a generic template.',
+          'Built from scratch around your brand and your customers — not a generic template.',
       },
       redesign: {
         title: 'Redesign & Rebrand',
-        description: 'A full visual and structural overhaul for stores that have outgrown their look.',
+        description: 'A full visual and structural rebuild for a store that has outgrown its look.',
       },
       funnel: {
         title: 'Sales Funnel & CRO',
@@ -75,7 +75,7 @@ export const en = {
       },
       liquid: {
         title: 'Custom Liquid Sections',
-        description: 'Hand-built sections that do exactly what you need, without stacking apps.',
+        description: 'Hand-built sections that do exactly what you need — no bloated apps.',
       },
     },
   },
@@ -159,10 +159,10 @@ export const en = {
         { year: '2024', text: 'Back-End Developer at Weja, an e-commerce platform.' },
         {
           year: 'Rejected',
-          text: 'Companies turned him down for being a student, so he went freelance and found Shopify.',
+          text: 'Companies turned me down for being a student, so I went freelance and found Shopify.',
         },
         { year: '< 5 months', text: '20+ brands across Egypt, Saudi Arabia & the Gulf, at 99% satisfaction.' },
-        { year: 'Now', text: 'Building conversion-focused Shopify stores while finishing his degree in 2027.' },
+        { year: 'Now', text: 'Building conversion-focused Shopify stores while finishing my degree in 2027.' },
       ],
     },
   },
