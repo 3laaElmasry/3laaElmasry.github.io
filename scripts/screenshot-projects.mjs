@@ -130,6 +130,8 @@ async function captureOne(browser, target) {
     await gotoAndSettle(desktopPage, url);
     await dismissPopups(desktopPage);
     await desktopPage.waitForTimeout(500);
+    await autoScroll(desktopPage);
+    await dismissPopups(desktopPage);
     desktopBuffer = await desktopPage.screenshot({ fullPage: true, type: "png" });
   } catch (err) {
     console.log(`[desktop] first attempt failed for ${slug}: ${err.message}`);
@@ -137,6 +139,8 @@ async function captureOne(browser, target) {
       await gotoAndSettle(desktopPage, url);
       await dismissPopups(desktopPage);
       await desktopPage.waitForTimeout(500);
+      await autoScroll(desktopPage);
+      await dismissPopups(desktopPage);
       desktopBuffer = await desktopPage.screenshot({ fullPage: true, type: "png" });
     } catch (err2) {
       console.log(`[desktop] retry failed for ${slug}: ${err2.message}`);
