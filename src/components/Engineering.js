@@ -9,7 +9,11 @@ import { initCarousel } from '../utils/carousel.js';
 
 function proofRow() {
   return `
-    <div class="engineering__proof reveal">
+    <div class="carousel-head engineering__proof-head reveal">
+      <span class="visually-hidden">${t('engineering.eyebrow')}</span>
+      ${CarouselNav('proof-track', t('engineering.proof.prev'), t('engineering.proof.next'))}
+    </div>
+    <div class="carousel-track engineering__proof" id="proof-track" tabindex="0" role="region" aria-label="${t('engineering.eyebrow')}">
       ${proofStats
         .map(
           (stat) => `
@@ -66,6 +70,7 @@ export function Engineering(lang) {
 }
 
 export function initEngineering() {
+  initCarousel('proof-track');
   initCarousel('skills-track');
   initCarousel('dev-projects-track');
 }

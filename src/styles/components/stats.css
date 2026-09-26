@@ -3,16 +3,23 @@
   border-block: 1px solid var(--line);
 }
 
-.stats__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6);
-  text-align: center;
+.stats__head {
+  margin-block-end: var(--space-5);
+  justify-content: flex-end;
 }
 
-@media (min-width: 768px) {
-  .stats__grid {
-    grid-template-columns: repeat(4, 1fr);
+.stats__item {
+  width: 42%;
+  text-align: center;
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+@media (min-width: 640px) {
+  .stats__item {
+    width: 22%;
   }
 }
 

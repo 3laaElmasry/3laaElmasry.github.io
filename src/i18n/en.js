@@ -32,6 +32,8 @@ export const en = {
   },
   stats: {
     sectionLabel: 'Key stats',
+    prev: 'Previous stat',
+    next: 'Next stat',
     brands: 'Brands built',
     followers: 'Followers',
     sales: 'Sales growth',
@@ -87,6 +89,8 @@ export const en = {
     eyebrow: 'Process',
     title: 'How I work',
     subtitle: 'Four steps, no detours.',
+    prev: 'Previous step',
+    next: 'Next step',
     steps: {
       understand: {
         title: 'Understand the brand',
@@ -111,6 +115,8 @@ export const en = {
     title: 'Engineer first. Shopify developer second.',
     subtitle: 'Why my stores are faster and cleaner than app-stacked templates.',
     proof: {
+      prev: 'Previous proof point',
+      next: 'Next proof point',
       problems: 'Problems solved',
       problemsSub: 'LeetCode · Codewars · Codeforces',
       relevance: 'Product-match relevance at Weja',
@@ -160,8 +166,12 @@ export const en = {
     markets: 'Egypt · Saudi Arabia · UAE & the Gulf · United States',
     educationTitle: 'Education',
     education: 'B.Sc. Business Information Systems, Benha University (expected 2027)',
+    metaPrev: 'Previous',
+    metaNext: 'Next',
     timeline: {
       title: 'The journey',
+      prev: 'Previous milestone',
+      next: 'Next milestone',
       items: [
         { year: 'Age 18', text: 'Started programming — C++, DSA, then C# / .NET.' },
         { year: '2024', text: 'Back-End Developer at Weja, an e-commerce platform.' },
@@ -181,6 +191,8 @@ export const en = {
     email: 'Email',
     phone: 'Phone',
     socialsTitle: 'Follow along',
+    prev: 'Previous contact option',
+    next: 'Next contact option',
   },
   footer: {
     builtBy: 'Built by Alaa',

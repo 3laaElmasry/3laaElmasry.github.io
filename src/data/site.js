@@ -7,7 +7,7 @@ export const site = {
     en: 'Shopify Developer & CRO Specialist',
     ar: 'مطور Shopify ومتخصص تحسين التحويل',
   },
-  logoText: 'Alaa.',
+  logoText: 'Elmasry.',
   phone: '+20 108 085 0238',
   whatsappNumber: '201080850238',
   email: '3laaelmasry2005a@gmail.com',

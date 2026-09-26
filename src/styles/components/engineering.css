@@ -1,25 +1,27 @@
 /* Proof row */
-.engineering__proof {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin-block-end: var(--space-7);
+.engineering__proof-head {
+  margin-block-end: var(--space-4);
 }
 
-@media (min-width: 700px) {
-  .engineering__proof {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.engineering__proof {
+  margin-block-end: var(--space-7);
 }
 
 .engineering__proof-item {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  width: 70%;
   padding: var(--space-5);
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+}
+
+@media (min-width: 700px) {
+  .engineering__proof-item {
+    width: 30%;
+  }
 }
 
 .engineering__proof-value {

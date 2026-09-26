@@ -32,6 +32,8 @@ export const ar = {
   },
   stats: {
     sectionLabel: 'أهم الأرقام',
+    prev: 'الرقم السابق',
+    next: 'الرقم الجاي',
     brands: 'براند اتبنى',
     followers: 'متابع',
     sales: 'زيادة في المبيعات',
@@ -86,6 +88,8 @@ export const ar = {
     eyebrow: 'خطوات الشغل',
     title: 'إزاي بشتغل',
     subtitle: 'أربع خطوات، من غير لف ودوران.',
+    prev: 'الخطوة السابقة',
+    next: 'الخطوة الجاية',
     steps: {
       understand: {
         title: 'فهم البراند',
@@ -110,6 +114,8 @@ export const ar = {
     title: 'مهندس برمجيات قبل ما أكون مطوّر Shopify.',
     subtitle: 'ليه متاجري أسرع وأنضف من التمبلتس المليانة تطبيقات.',
     proof: {
+      prev: 'الإثبات السابق',
+      next: 'الإثبات الجاي',
       problems: 'مسألة اتحلت',
       problemsSub: 'LeetCode · Codewars · Codeforces',
       relevance: 'تحسين في دقة ترشيح المنتجات في Weja',
@@ -159,8 +165,12 @@ export const ar = {
     markets: 'مصر · السعودية · الإمارات والخليج · أمريكا',
     educationTitle: 'التعليم',
     education: 'بكالوريوس نظم معلومات إدارية، جامعة بنها (متوقع 2027)',
+    metaPrev: 'السابق',
+    metaNext: 'التالي',
     timeline: {
       title: 'الرحلة',
+      prev: 'المحطة السابقة',
+      next: 'المحطة الجاية',
       items: [
         { year: 'سن 18', text: 'بدأت البرمجة — ++C وDSA، وبعدين #C و.NET.' },
         { year: '2024', text: 'اشتغلت Back-End Developer في Weja، منصة e-commerce.' },
@@ -177,6 +187,8 @@ export const ar = {
     email: 'إيميل',
     phone: 'تليفون',
     socialsTitle: 'تابعني',
+    prev: 'وسيلة التواصل السابقة',
+    next: 'وسيلة التواصل الجاية',
   },
   footer: {
     builtBy: 'اتبنى بواسطة علاء',

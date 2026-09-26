@@ -3,6 +3,8 @@ import { icon } from '../utils/icons.js';
 import { getWhatsAppUrl } from '../utils/whatsapp.js';
 import { site } from '../data/site.js';
 import { socials } from '../data/socials.js';
+import { CarouselNav } from './CarouselNav.js';
+import { initCarousel } from '../utils/carousel.js';
 
 export function Contact(lang) {
   const telHref = `tel:${site.phone.replace(/\s+/g, '')}`;
@@ -15,7 +17,11 @@ export function Contact(lang) {
           <h2 class="contact__title">${t('contact.title')}</h2>
         </div>
 
-        <div class="contact__cards reveal">
+        <div class="carousel-head contact__cards-head reveal">
+          <span class="visually-hidden">${t('contact.eyebrow')}</span>
+          ${CarouselNav('contact-cards-track', t('contact.prev'), t('contact.next'))}
+        </div>
+        <div class="carousel-track contact__cards" id="contact-cards-track" tabindex="0" role="region" aria-label="${t('contact.eyebrow')}">
           <a class="contact-card" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
             <span class="contact-card__icon contact-card__icon--whatsapp">${icon('whatsapp')}</span>
             <span class="contact-card__label mono">${t('contact.whatsapp')}</span>
@@ -50,4 +56,8 @@ export function Contact(lang) {
       </div>
     </section>
   `;
+}
+
+export function initContact() {
+  initCarousel('contact-cards-track');
 }

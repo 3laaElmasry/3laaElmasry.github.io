@@ -4,29 +4,31 @@
   margin-block-end: var(--space-7);
 }
 
-.contact__cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin-block-end: var(--space-8);
+.contact__cards-head {
+  margin-block-end: var(--space-4);
 }
 
-@media (min-width: 700px) {
-  .contact__cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.contact__cards {
+  margin-block-end: var(--space-8);
 }
 
 .contact-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  width: 75%;
   padding: var(--space-5);
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--ink);
   transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+@media (min-width: 700px) {
+  .contact-card {
+    width: calc(34% - var(--space-5));
+  }
 }
 
 .contact-card:hover,
