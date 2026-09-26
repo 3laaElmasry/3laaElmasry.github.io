@@ -60,6 +60,8 @@ export const en = {
     eyebrow: 'Services',
     title: 'Services',
     subtitle: 'What I actually build.',
+    prev: 'Previous services',
+    next: 'Next services',
     items: {
       build: {
         title: 'Custom Shopify Store Build',

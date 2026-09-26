@@ -3,7 +3,7 @@ import { Hero, initHero } from './components/Hero.js';
 import { StatsStrip, initStatsStrip } from './components/StatsStrip.js';
 import { BrandsMarquee } from './components/BrandsMarquee.js';
 import { Work, initWork } from './components/Work.js';
-import { Services } from './components/Services.js';
+import { Services, initServices } from './components/Services.js';
 import { Process } from './components/Process.js';
 import { Engineering } from './components/Engineering.js';
 import { About } from './components/About.js';
@@ -38,6 +38,7 @@ export function renderApp(lang) {
   initHero(lang);
   initStatsStrip();
   initWork(lang);
+  initServices();
   initProjectModal(lang);
   initReveal();
   initCounters();

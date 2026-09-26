@@ -17,29 +17,7 @@ export function Hero(lang) {
   return `
     <section class="hero" id="top">
       <div class="container hero__grid">
-        <div class="hero__content">
-          <div class="availability-pill reveal">
-            <span class="availability-pill__dot" aria-hidden="true"></span>
-            ${t('hero.availability')}
-          </div>
-          <h1 class="hero__headline reveal" data-reveal-delay="80">${t('hero.headline')}</h1>
-          <p class="hero__sub reveal" data-reveal-delay="140">${t('hero.sub')}</p>
-          <div class="hero__ctas reveal" data-reveal-delay="200">
-            <a class="btn btn--primary" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
-              ${t('hero.ctaPrimary')}
-            </a>
-            <a class="btn btn--secondary" href="#work">
-              ${t('hero.ctaSecondary')} ${icon('arrowRight')}
-            </a>
-          </div>
-          <div class="chip-row hero__chips reveal" data-reveal-delay="260">
-            ${QUICK_CHIPS.map(
-              (chip) =>
-                `<button type="button" class="chip chip--quick" data-scroll-project="${chip.projectId}">${t(chip.key)}</button>`
-            ).join('')}
-          </div>
-        </div>
-        <div class="hero__portrait-wrap reveal" data-reveal-delay="120">
+        <div class="hero__portrait-wrap reveal">
           <div class="hero__glow" aria-hidden="true"></div>
           <picture>
             <source type="image/webp" srcset="${hero800} 800w, ${hero1200} 1200w" sizes="(min-width: 900px) 420px, 70vw" />
@@ -54,6 +32,28 @@ export function Hero(lang) {
           </picture>
           <div class="hero__badge hero__badge--brands">${t('hero.badgeBrands')}</div>
           <div class="hero__badge hero__badge--satisfaction">${t('hero.badgeSatisfaction')}</div>
+        </div>
+        <div class="hero__content">
+          <div class="availability-pill reveal" data-reveal-delay="80">
+            <span class="availability-pill__dot" aria-hidden="true"></span>
+            ${t('hero.availability')}
+          </div>
+          <h1 class="hero__headline reveal" data-reveal-delay="140">${t('hero.headline')}</h1>
+          <p class="hero__sub reveal" data-reveal-delay="200">${t('hero.sub')}</p>
+          <div class="hero__ctas reveal" data-reveal-delay="260">
+            <a class="btn btn--primary" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
+              ${t('hero.ctaPrimary')}
+            </a>
+            <a class="btn btn--secondary" href="#work">
+              ${t('hero.ctaSecondary')} ${icon('arrowRight')}
+            </a>
+          </div>
+          <div class="chip-row hero__chips reveal" data-reveal-delay="320">
+            ${QUICK_CHIPS.map(
+              (chip) =>
+                `<button type="button" class="chip chip--quick" data-scroll-project="${chip.projectId}">${t(chip.key)}</button>`
+            ).join('')}
+          </div>
         </div>
       </div>
     </section>

@@ -84,6 +84,12 @@
   font-size: 1.1em;
 }
 
+.featured-project__metric--highlight {
+  font-size: var(--fs-h3);
+  font-family: var(--font-mono);
+  text-transform: none;
+}
+
 .featured-project__oneliner {
   margin-block-end: var(--space-4);
   max-width: 46ch;

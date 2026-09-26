@@ -60,6 +60,8 @@ export const ar = {
     eyebrow: 'خدماتي',
     title: 'خدماتي',
     subtitle: 'اللي فعلاً بعمله.',
+    prev: 'الخدمة السابقة',
+    next: 'الخدمة التالية',
     items: {
       build: {
         title: 'بناء متجر Shopify من الصفر',

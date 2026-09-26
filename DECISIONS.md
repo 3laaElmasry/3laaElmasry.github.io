@@ -39,3 +39,13 @@ The `qa-auditor` subagent found one Blocker and several High/Medium/Low issues. 
   gh run watch
   ```
   The live URL will be `https://3laaelmasry.github.io/`.
+
+## Post-launch restyle (owner request, 2026-09-26)
+
+The owner (Alaa) asked for three changes after seeing the live site:
+
+1. **Hero photo first.** Swapped the DOM order of the portrait and the text content in `Hero.js` so the photo is the first thing rendered — this puts it at the top of the stack on mobile, and (since CSS Grid places track 1 at the inline-start side, which is the *right* in RTL) it now sits on the right in Arabic and the left in English. Flipped the grid's column-width ratio (`0.9fr`/`1.1fr`) to match, so the text column keeps the same visual weight it had before, just mirrored.
+2. **Project order.** Owner wanted: Al Mosaad → Alrajhi → Rull Clothes → Naila → Fakhmestaa. This conflicts with the original CLAUDE.md spec, which made Rull Clothes the "featured" full-width card specifically because it has the flashiest number (×5 sales). Asked the owner directly whether the new first project (Al Mosaad, which has no hard metric, only a qualitative "Official EMTOP importer" highlight) should inherit the featured treatment, or whether all 5 should become equal-sized grid cards. **Owner chose: Al Mosaad keeps the featured full-width card.** Moved `featured: true` to Al Mosaad in `projects.js`, reordered the array, and updated `FeaturedProject.js` to render a `highlight`-only fallback (large mono text instead of a big accent number) for projects without a hard metric — mirroring the pattern `ProjectCard.js` already used for Al Mosaad/Alrajhi in the regular grid.
+3. **Services as a carousel.** Converted `Services.js` from a static grid to a horizontally scrollable, `scroll-snap` carousel with prev/next buttons, to shorten the page. Verified the prev/next buttons scroll in the correct logical direction in both LTR and RTL (Chromium reports negative `scrollLeft` deltas for "forward" in RTL, which the component accounts for). With only 4 service cards and ~3 visible at once on desktop, the total scrollable range is small by design — one "next" click reveals the remaining card.
+
+All three changes verified with a full 360/390/768/1024/1440 × EN/AR horizontal-overflow sweep (clean) after implementation.
