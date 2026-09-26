@@ -1,0 +1,60 @@
+:root {
+  --bg: #0a0a0b;
+  --bg-2: #111114;
+  --bg-card: #16161a;
+  --bg-elev: #1c1c22;
+  --ink: #f5f5f7;
+  --ink-2: #b8b8c0;
+  --ink-3: #7a7a85;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --accent: #c6f432;
+  --accent-ink: #0a0a0b;
+  --accent-glow: rgba(198, 244, 50, 0.18);
+  --whatsapp: #25d366;
+
+  --radius-lg: 24px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --font-display: 'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif;
+  --font-body: 'Inter', 'IBM Plex Sans Arabic', sans-serif;
+  --font-ar: 'IBM Plex Sans Arabic', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --container: 1200px;
+
+  /* fluid type scale */
+  --fs-hero: clamp(2.6rem, 6vw, 5.2rem);
+  --fs-h2: clamp(2rem, 4vw, 3.25rem);
+  --fs-h3: clamp(1.4rem, 2.2vw, 1.9rem);
+  --fs-lead: clamp(1.05rem, 1.4vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+  --fs-stat: clamp(2.2rem, 4.5vw, 3.6rem);
+
+  /* spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 140px;
+
+  /* motion */
+  --dur-fast: 200ms;
+  --dur-base: 450ms;
+  --dur-slow: 650ms;
+}
+
+html[lang='ar'] {
+  --font-display: 'IBM Plex Sans Arabic', 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+}

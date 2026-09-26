@@ -1,0 +1,62 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-body);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: transform var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+html[dir='rtl'] .btn svg.icon-directional {
+  transform: scaleX(-1);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 8px 30px -4px var(--accent-glow);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+
+.btn--secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--whatsapp {
+  background: var(--whatsapp);
+  color: #05170c;
+}
+
+.btn--whatsapp:hover {
+  box-shadow: 0 8px 30px -4px rgba(37, 211, 102, 0.35);
+}
+
+.btn--sm {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--fs-small);
+}

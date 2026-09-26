@@ -1,0 +1,112 @@
+.contact__title {
+  font-size: var(--fs-h2);
+  max-width: 22ch;
+  margin-block-end: var(--space-7);
+}
+
+.contact__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+
+@media (min-width: 700px) {
+  .contact__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.contact-card__icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  color: var(--ink);
+}
+
+.contact-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-card__icon--whatsapp {
+  color: var(--whatsapp);
+}
+
+.contact-card__label {
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+}
+
+html[lang='ar'] .contact-card__label {
+  letter-spacing: 0;
+}
+
+.contact-card__value {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.contact__socials-title {
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+  margin-block-end: var(--space-4);
+  letter-spacing: 0.06em;
+}
+
+html[lang='ar'] .contact__socials-title {
+  letter-spacing: 0;
+}
+
+.contact__socials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.contact__social-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.contact__social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact__social-link:hover,
+.contact__social-link:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}

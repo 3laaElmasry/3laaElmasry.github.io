@@ -1,0 +1,71 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  inset-inline-start: var(--space-4);
+  top: -100px;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: top var(--dur-fast) var(--ease);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-orbs__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+  background: var(--accent);
+}
+
+.bg-orbs__orb--a {
+  width: 480px;
+  height: 480px;
+  top: -120px;
+  inset-inline-end: -120px;
+  animation: orb-drift-a 26s ease-in-out infinite;
+}
+
+.bg-orbs__orb--b {
+  width: 380px;
+  height: 380px;
+  bottom: -100px;
+  inset-inline-start: -80px;
+  opacity: 0.14;
+  animation: orb-drift-b 32s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-orbs__orb {
+    animation: none;
+  }
+}

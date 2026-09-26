@@ -1,0 +1,84 @@
+.work__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-block-start: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .work__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Featured project (Rull Clothes) */
+.featured-project {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-block-end: var(--space-6);
+  transition: border-color var(--dur-base) var(--ease);
+}
+
+@media (min-width: 900px) {
+  .featured-project {
+    grid-template-columns: 1.3fr 1fr;
+    padding: var(--space-7);
+  }
+}
+
+.featured-project:hover {
+  border-color: var(--line-strong);
+}
+
+.featured-project__media {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.featured-project__category {
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+  margin-block-end: var(--space-2);
+}
+
+.featured-project__title {
+  font-size: var(--fs-h3);
+  margin-block-end: var(--space-3);
+}
+
+.featured-project__metric {
+  font-family: var(--font-display);
+  font-size: var(--fs-stat);
+  color: var(--accent);
+  font-weight: 700;
+  margin-block-end: var(--space-4);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.featured-project__metric-value {
+  font-size: 1.1em;
+}
+
+.featured-project__oneliner {
+  margin-block-end: var(--space-4);
+  max-width: 46ch;
+}
+
+.featured-project__tags {
+  margin-block-end: var(--space-6);
+}
+
+.featured-project__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}

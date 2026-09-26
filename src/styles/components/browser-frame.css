@@ -1,0 +1,80 @@
+.browser-frame {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+}
+
+.browser-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-card);
+  border-block-end: 1px solid var(--line);
+}
+
+.browser-frame__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.browser-frame__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.browser-frame__dot--red {
+  background: #ff5f57;
+}
+.browser-frame__dot--yellow {
+  background: #febc2e;
+}
+.browser-frame__dot--green {
+  background: #28c840;
+}
+
+.browser-frame__domain {
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+}
+
+.browser-frame__viewport {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+
+.browser-frame--tall .browser-frame__viewport {
+  aspect-ratio: 4 / 5;
+}
+
+.browser-frame__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: object-position 6s linear;
+}
+
+.project-card:hover .browser-frame__img,
+.project-card:focus-within .browser-frame__img {
+  object-position: bottom center;
+}
+
+.browser-frame__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-elev));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .browser-frame__img {
+    transition: none;
+  }
+}

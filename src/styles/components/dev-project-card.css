@@ -1,0 +1,84 @@
+/* Deliberately quieter / more compact than .project-card: no accent border,
+   no big colored metric, smaller mono-heavy type. Keeps engineering content
+   visually secondary to the Shopify project cards. */
+.dev-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.dev-project-card:hover,
+.dev-project-card:focus-within {
+  border-color: var(--line-strong);
+}
+
+.dev-project-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  margin-block-end: var(--space-1);
+}
+
+.dev-project-card__dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.dev-project-card__dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.dev-project-card__tag {
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+}
+
+.dev-project-card__name {
+  font-size: var(--fs-small);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.dev-project-card__desc {
+  font-size: var(--fs-micro);
+  color: var(--ink-2);
+  max-width: 42ch;
+}
+
+.dev-project-card__stack {
+  margin-block: var(--space-1);
+}
+
+.dev-project-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-2);
+}
+
+.dev-project-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-micro);
+  font-family: var(--font-mono);
+  color: var(--ink-2);
+}
+
+.dev-project-card__link svg {
+  width: 12px;
+  height: 12px;
+}
+
+.dev-project-card__link:hover {
+  color: var(--ink);
+}
