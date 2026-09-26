@@ -92,25 +92,30 @@
 
 .engineering__subhead {
   font-size: var(--fs-h3);
-  margin-block-end: var(--space-5);
-}
-
-.skills-groups {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-}
-
-@media (min-width: 700px) {
-  .skills-groups {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  margin-block-end: 0;
 }
 
 .skills-groups__group {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  width: 78%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .skills-groups__group {
+    width: calc(50% - var(--space-5) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-groups__group {
+    width: calc(34% - var(--space-5));
+  }
 }
 
 .skills-groups__label {
@@ -125,22 +130,10 @@ html[lang='ar'] .skills-groups__label {
 
 /* Dev projects head */
 .engineering__devhead {
-  margin-block-end: var(--space-5);
+  margin-block-end: 0;
 }
 
 .engineering__devsubtitle {
   color: var(--ink-2);
   font-size: var(--fs-small);
-}
-
-.dev-project-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-@media (min-width: 700px) {
-  .dev-project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }

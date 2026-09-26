@@ -4,6 +4,8 @@ import { devProjects } from '../data/devProjects.js';
 import { ExperienceCard } from './ExperienceCard.js';
 import { SkillsGroups } from './SkillsGroups.js';
 import { DevProjectCard } from './DevProjectCard.js';
+import { CarouselNav } from './CarouselNav.js';
+import { initCarousel } from '../utils/carousel.js';
 
 function proofRow() {
   return `
@@ -37,20 +39,33 @@ export function Engineering(lang) {
         ${ExperienceCard()}
 
         <div class="engineering__skills">
-          <h3 class="engineering__subhead reveal">${t('engineering.skills.title')}</h3>
-          ${SkillsGroups()}
+          <div class="carousel-head reveal">
+            <h3 class="engineering__subhead">${t('engineering.skills.title')}</h3>
+            ${CarouselNav('skills-track', t('engineering.skills.prev'), t('engineering.skills.next'))}
+          </div>
+          <div class="carousel-track skills-groups" id="skills-track" tabindex="0" role="region" aria-label="${t('engineering.skills.title')}">
+            ${SkillsGroups()}
+          </div>
         </div>
 
         <div class="engineering__devprojects">
-          <div class="engineering__devhead reveal">
-            <h3 class="engineering__subhead">${t('engineering.devProjects.title')}</h3>
-            <p class="engineering__devsubtitle">${t('engineering.devProjects.subtitle')}</p>
+          <div class="carousel-head reveal">
+            <div class="engineering__devhead">
+              <h3 class="engineering__subhead">${t('engineering.devProjects.title')}</h3>
+              <p class="engineering__devsubtitle">${t('engineering.devProjects.subtitle')}</p>
+            </div>
+            ${CarouselNav('dev-projects-track', t('engineering.devProjects.prev'), t('engineering.devProjects.next'))}
           </div>
-          <div class="dev-project-grid">
+          <div class="carousel-track dev-project-grid" id="dev-projects-track" tabindex="0" role="region" aria-label="${t('engineering.devProjects.title')}">
             ${devProjects.map((project) => DevProjectCard(project, lang)).join('')}
           </div>
         </div>
       </div>
     </section>
   `;
+}
+
+export function initEngineering() {
+  initCarousel('skills-track');
+  initCarousel('dev-projects-track');
 }

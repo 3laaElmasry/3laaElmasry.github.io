@@ -44,17 +44,17 @@ export const en = {
     eyebrow: 'Selected Work',
     title: 'Selected Work',
     subtitle: 'Real brands. Real numbers.',
-    chat: {
-      online: 'Usually replies instantly',
-      greeting: 'Hey! I’m Alaa — here are a few stores I’ve built. Let me show you one.',
-      viewSite: 'View site',
-      next: 'Next project',
-      contact: 'Contact me',
-      userStart: 'Show me your work',
-      userNext: 'Show me another one',
-      closing: 'That’s all of them for now — want a store like these? Let’s talk.',
-      typing: 'Typing…',
-    },
+    visitStore: 'Visit live store',
+    viewStory: 'View story',
+    desktopLabel: 'Desktop',
+    mobileLabel: 'Mobile',
+  },
+  modal: {
+    challenge: 'The challenge',
+    whatIBuilt: 'What I built',
+    result: 'The result',
+    close: 'Close',
+    visitStore: 'Visit live store',
   },
   services: {
     eyebrow: 'Services',
@@ -130,6 +130,8 @@ export const en = {
     },
     skills: {
       title: 'Skills',
+      prev: 'Previous skills',
+      next: 'Next skills',
       groups: {
         shopify: 'Shopify',
         frontend: 'Front-end',
@@ -142,6 +144,8 @@ export const en = {
     devProjects: {
       title: 'Dev Projects',
       subtitle: 'The engineering behind the Shopify work.',
+      prev: 'Previous project',
+      next: 'Next project',
       github: 'GitHub',
       live: 'Live',
     },

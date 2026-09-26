@@ -44,17 +44,17 @@ export const ar = {
     eyebrow: 'شغل مختار',
     title: 'شغل مختار',
     subtitle: 'براندات حقيقية. أرقام حقيقية.',
-    chat: {
-      online: 'بيرد في الحال',
-      greeting: 'أهلاً! أنا علاء، ودي شوية متاجر بنيتها. تعالى أوريك واحدة.',
-      viewSite: 'زور الموقع',
-      next: 'المشروع الجاي',
-      contact: 'كلمني',
-      userStart: 'وريني شغلك',
-      userNext: 'وريني واحد تاني',
-      closing: 'دول كل المشاريع دلوقتي، عايز متجر زي دول؟ يلا نتكلم.',
-      typing: 'بيكتب…',
-    },
+    visitStore: 'زور المتجر',
+    viewStory: 'شوف القصة',
+    desktopLabel: 'ديسكتوب',
+    mobileLabel: 'موبايل',
+  },
+  modal: {
+    challenge: 'التحدي',
+    whatIBuilt: 'اللي بنيته',
+    result: 'النتيجة',
+    close: 'إغلاق',
+    visitStore: 'زور المتجر',
   },
   services: {
     eyebrow: 'خدماتي',
@@ -129,6 +129,8 @@ export const ar = {
     },
     skills: {
       title: 'المهارات',
+      prev: 'المهارات السابقة',
+      next: 'المهارات التالية',
       groups: {
         shopify: 'Shopify',
         frontend: 'Front-end',
@@ -141,6 +143,8 @@ export const ar = {
     devProjects: {
       title: 'مشاريع برمجية',
       subtitle: 'الهندسة اللي وراء شغل Shopify.',
+      prev: 'المشروع السابق',
+      next: 'المشروع الجاي',
       github: 'GitHub',
       live: 'لايف',
     },

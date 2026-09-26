@@ -10,6 +10,19 @@
   border-radius: var(--radius-sm);
   padding: var(--space-4);
   transition: border-color var(--dur-fast) var(--ease);
+  width: 80%;
+}
+
+@media (min-width: 640px) {
+  .dev-project-card {
+    width: calc(50% - var(--space-5) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dev-project-card {
+    width: calc(30% - var(--space-5));
+  }
 }
 
 .dev-project-card:hover,
