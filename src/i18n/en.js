@@ -31,6 +31,7 @@ export const en = {
     speed: 'Built in 3 days',
   },
   stats: {
+    sectionLabel: 'Key stats',
     brands: 'Brands built',
     followers: 'Followers',
     sales: 'Sales growth',

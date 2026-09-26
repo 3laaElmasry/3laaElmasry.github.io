@@ -2,6 +2,8 @@ import { getProjectImage } from '../utils/images.js';
 
 export function BrowserFrame({ domain, imageFile, alt, tall = false }) {
   const src = getProjectImage(imageFile);
+  const width = tall ? 800 : 1280;
+  const height = tall ? 1000 : 800;
   return `
     <div class="browser-frame ${tall ? 'browser-frame--tall' : ''}">
       <div class="browser-frame__bar">
@@ -15,7 +17,7 @@ export function BrowserFrame({ domain, imageFile, alt, tall = false }) {
       <div class="browser-frame__viewport">
         ${
           src
-            ? `<img src="${src}" alt="${alt}" loading="lazy" class="browser-frame__img" />`
+            ? `<img src="${src}" alt="${alt}" loading="lazy" width="${width}" height="${height}" class="browser-frame__img" />`
             : `<div class="browser-frame__placeholder mono">${domain}</div>`
         }
       </div>

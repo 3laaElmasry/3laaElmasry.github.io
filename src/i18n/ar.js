@@ -31,6 +31,7 @@ export const ar = {
     speed: 'اتبنى في 3 أيام',
   },
   stats: {
+    sectionLabel: 'أهم الأرقام',
     brands: 'براند اتبنى',
     followers: 'متابع',
     sales: 'زيادة في المبيعات',

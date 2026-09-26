@@ -3,7 +3,7 @@ import { stats } from '../data/stats.js';
 
 export function StatsStrip(lang) {
   return `
-    <section class="stats" aria-label="${t('stats.brands')}">
+    <section class="stats" aria-label="${t('stats.sectionLabel')}">
       <div class="container stats__grid">
         ${stats
           .map(

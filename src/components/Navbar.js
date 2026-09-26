@@ -39,20 +39,20 @@ export function Navbar(lang) {
           </button>
         </div>
       </div>
-      <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="${t('nav.menuOpen')}" hidden>
-        <div class="mobile-menu__inner">
-          <button type="button" class="mobile-menu__close" id="mobile-menu-close" aria-label="${t('nav.menuClose')}">
-            ${icon('close')}
-          </button>
-          <nav class="mobile-menu__links" aria-label="Mobile">
-            ${navLinksHtml('mobile-menu')}
-          </nav>
-          <a class="btn btn--whatsapp mobile-menu__whatsapp" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
-            ${icon('whatsapp')}<span>${t('nav.whatsapp')}</span>
-          </a>
-        </div>
-      </div>
     </header>
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="${t('nav.menuOpen')}" hidden>
+      <div class="mobile-menu__inner">
+        <button type="button" class="mobile-menu__close" id="mobile-menu-close" aria-label="${t('nav.menuClose')}">
+          ${icon('close')}
+        </button>
+        <nav class="mobile-menu__links" aria-label="Mobile">
+          ${navLinksHtml('mobile-menu')}
+        </nav>
+        <a class="btn btn--whatsapp mobile-menu__whatsapp" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
+          ${icon('whatsapp')}<span>${t('nav.whatsapp')}</span>
+        </a>
+      </div>
+    </div>
   `;
 }
 
@@ -68,6 +68,25 @@ export function initNavbar() {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  function getFocusable() {
+    return qsa('a[href], button:not([disabled])', menu);
+  }
+
+  function trapFocus(event) {
+    if (event.key !== 'Tab' || menu.hidden) return;
+    const focusable = getFocusable();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
 
   function openMenu() {
     menu.hidden = false;
@@ -87,8 +106,9 @@ export function initNavbar() {
   closeBtn?.addEventListener('click', closeMenu);
   qsa('.mobile-menu__link', menu).forEach((link) => link.addEventListener('click', closeMenu));
 
-  menu?.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenu();
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu && !menu.hidden) closeMenu();
+    trapFocus(event);
   });
 
   langToggle?.addEventListener('click', () => {

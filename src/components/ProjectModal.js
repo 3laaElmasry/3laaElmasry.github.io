@@ -24,6 +24,9 @@ function renderModalContent(project, lang) {
   const secondaryDesktop = project.screenshots.desktopSecondary
     ? getProjectImage(project.screenshots.desktopSecondary)
     : null;
+  const secondaryMobile = project.screenshots.mobileSecondary
+    ? getProjectImage(project.screenshots.mobileSecondary)
+    : null;
 
   return `
     <p class="modal__category mono">${project.category[lang]}</p>
@@ -32,6 +35,7 @@ function renderModalContent(project, lang) {
       ${desktopSrc ? `<img src="${desktopSrc}" alt="${project.name} desktop" class="modal__img modal__img--desktop" loading="lazy" />` : ''}
       ${mobileSrc ? `<img src="${mobileSrc}" alt="${project.name} mobile" class="modal__img modal__img--mobile" loading="lazy" />` : ''}
       ${secondaryDesktop ? `<img src="${secondaryDesktop}" alt="${project.name} product page" class="modal__img modal__img--desktop" loading="lazy" />` : ''}
+      ${secondaryMobile ? `<img src="${secondaryMobile}" alt="${project.name} product page mobile" class="modal__img modal__img--mobile" loading="lazy" />` : ''}
     </div>
     ${
       project.challenge
