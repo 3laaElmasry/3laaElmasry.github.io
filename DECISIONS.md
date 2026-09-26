@@ -25,3 +25,17 @@ The `qa-auditor` subagent found one Blocker and several High/Medium/Low issues. 
 - **Low — StatsStrip's section `aria-label` reused the "Brands" stat label for the whole section:** added a dedicated `stats.sectionLabel` i18n key ("Key stats" / "أهم الأرقام").
 - **Low — Rull's `mobileSecondary` product-page screenshot was captured but never rendered:** wired it into `ProjectModal.js`'s media grid alongside the other three shots.
 - Verified after fixes: full build passes, mobile menu now fills 390×844 with a working Tab-focus trap and Escape-to-close, and the full 360/390/768/1024/1440 × EN/AR overflow sweep is still clean.
+- Re-audit (second `qa-auditor` pass) confirmed all 7 fixes live and found no regressions. **Verdict: GO for Phase 6.**
+
+## Phase 6 — Deploy: blocked on missing `gh` CLI
+
+- `gh` is not installed on this machine (confirmed twice, before and after Phase 5). This blocks repo creation, push, and Pages enablement, all of which the `deployer` subagent needs `gh` for.
+- What was still done without `gh`, using the public GitHub API (no auth needed for public data): confirmed the GitHub account `3laaElmasry` exists, and that neither `3laaElmasry.github.io` nor a `portfolio` repo exist yet under it. Per CLAUDE.md's rule ("`<user>.github.io` if it doesn't exist → base '/'"), the target is the **user site**, `3laaElmasry.github.io`. `vite.config.js` already defaults to `base: '/'`, which matches.
+- Added `.github/workflows/deploy.yml` (Node 20, `npm ci` → `npm run build` → `actions/configure-pages` → `actions/upload-pages-artifact` → `actions/deploy-pages`, triggered on push to `main`), so the only remaining steps are: install/authenticate `gh`, create the repo, and push.
+- **What the owner needs to do:** install the GitHub CLI and run `gh auth login`, then either re-run this session (the `deployer` subagent can take it from there) or run manually from `D:\Portfolio`:
+  ```
+  gh repo create 3laaElmasry.github.io --public --source=. --remote=origin --push
+  gh api -X POST repos/3laaElmasry/3laaElmasry.github.io/pages -f build_type=workflow
+  gh run watch
+  ```
+  The live URL will be `https://3laaelmasry.github.io/`.
