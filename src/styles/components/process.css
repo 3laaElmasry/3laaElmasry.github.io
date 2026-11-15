@@ -25,7 +25,6 @@
 .process-step__number {
   display: block;
   font-family: var(--font-numeric);
-  font-style: italic;
   font-size: 2.4rem;
   line-height: 1;
   color: var(--accent);

@@ -37,8 +37,8 @@ export function field(name, label, value = '', { textarea = false, dir = '', hin
 // A pair of inputs for one piece of copy in both languages.
 export function bilingual(name, label, value, options = {}) {
   return `<div class="field-pair">
-    ${field(`${name}_ar`, `${label} (عربي)`, value?.ar, { ...options, dir: 'rtl' })}
     ${field(`${name}_en`, `${label} (English)`, value?.en, { ...options, dir: 'ltr' })}
+    ${field(`${name}_ar`, `${label} (Arabic)`, value?.ar, { ...options, dir: 'rtl' })}
   </div>`;
 }
 
@@ -82,7 +82,7 @@ export function confirmClick(button) {
   if (button.dataset.armed) return true;
   button.dataset.armed = '1';
   button.dataset.label = button.textContent;
-  button.textContent = 'متأكد؟ اضغط تاني';
+  button.textContent = 'Sure? Click again';
   setTimeout(() => {
     delete button.dataset.armed;
     button.textContent = button.dataset.label;

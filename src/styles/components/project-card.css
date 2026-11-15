@@ -52,7 +52,7 @@
   direction: ltr;
   unicode-bidi: isolate;
   font-family: var(--font-numeric);
-  font-weight: 400;
+  font-weight: 800;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
@@ -62,7 +62,6 @@
 
 .project-card__metric--highlight {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 1.15rem;
   letter-spacing: 0;
   color: var(--accent);

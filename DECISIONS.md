@@ -112,3 +112,8 @@ Converted every remaining static grid into a carousel using the shared `utils/ca
 - **Brands marquee** now lists the project names from the store, so a project added in the dashboard shows up there too.
 - **Hosting:** `vercel.json` sets `cleanUrls`, which serves the dashboard at `/admin`. On GitHub Pages it is reachable at `/admin.html`.
 - **New dependency:** `@supabase/supabase-js` pinned to an exact version (owner-requested feature; the "no extra deps" rule in CLAUDE.md section 8 predates it).
+
+## 2026-11-15 — English type and dashboard language (owner request)
+
+- English type is now Plus Jakarta Sans throughout (bold, tightly tracked headings and numerals). The owner did not like the Instrument Serif headings; Arabic fonts are unchanged.
+- The admin dashboard is English and left-to-right, in the same typeface. Arabic content fields stay right-to-left.

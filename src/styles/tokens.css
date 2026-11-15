@@ -28,9 +28,9 @@
   --radius-sm: 4px;
   --radius-pill: 999px;
 
-  --font-display: 'Instrument Serif', 'Alexandria', serif;
-  --font-numeric: 'Instrument Serif', serif;
-  --font-body: 'Geist', 'IBM Plex Sans Arabic', sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Alexandria', sans-serif;
+  --font-numeric: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'IBM Plex Sans Arabic', sans-serif;
   --font-ar: 'IBM Plex Sans Arabic', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -38,7 +38,7 @@
   --container: 1200px;
 
   /* fluid type scale */
-  --fs-hero: clamp(2.7rem, 6.2vw, 5.6rem);
+  --fs-hero: clamp(2.5rem, 5.4vw, 4.6rem);
   --fs-h2: clamp(2rem, 4vw, 3.25rem);
   --fs-h3: clamp(1.4rem, 2.2vw, 1.9rem);
   --fs-lead: clamp(1.05rem, 1.4vw, 1.25rem);
@@ -68,6 +68,6 @@
 html[lang='ar'] {
   --fs-h2: clamp(1.7rem, 3.2vw, 2.6rem);
   --fs-h3: clamp(1.15rem, 1.7vw, 1.45rem);
-  --font-display: 'Alexandria', 'Instrument Serif', sans-serif;
-  --font-body: 'IBM Plex Sans Arabic', 'Geist', sans-serif;
+  --font-display: 'Alexandria', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', sans-serif;
 }

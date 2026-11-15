@@ -29,7 +29,8 @@ html[dir='rtl'] .marquee__track {
 
 .marquee__item {
   font-family: var(--font-numeric);
-  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   font-size: var(--fs-h3);
   color: var(--ink-3);
   white-space: nowrap;

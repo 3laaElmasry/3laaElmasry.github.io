@@ -4,15 +4,15 @@ import { esc, toast, failed, field, bilingual, readPair, hasText, splitList, slu
 import { getProjectImage } from '../utils/images.js';
 
 const SHOTS = [
-  { key: 'desktop', label: 'صورة الديسكتوب', hint: 'سكرين شوت طويل للصفحة كلها، عرض 1440 تقريبًا. هو اللي بيتحرك لما الماوس ييجي على الكارت.' },
-  { key: 'mobile', label: 'صورة الموبايل', hint: 'سكرين شوت من الموبايل، عرض 390 تقريبًا.' },
+  { key: 'desktop', label: 'Desktop screenshot', hint: 'A tall full-page screenshot, about 1440px wide. This is the one that scrolls when the card is hovered.' },
+  { key: 'mobile', label: 'Mobile screenshot', hint: 'A phone screenshot, about 390px wide.' },
 ];
 
 function shotField(shot, screenshots) {
   const current = getProjectImage(screenshots?.[shot.key]);
   return `<div class="field shot">
     <span>${shot.label}</span>
-    ${current ? `<img class="shot__preview" src="${esc(current)}" alt="" />` : '<p class="muted">مفيش صورة لسه.</p>'}
+    ${current ? `<img class="shot__preview" src="${esc(current)}" alt="" />` : '<p class="muted">No image yet.</p>'}
     <input type="file" name="shot_${shot.key}" accept="image/webp,image/png,image/jpeg" />
     <small>${shot.hint}</small>
   </div>`;
@@ -24,42 +24,42 @@ export function openProjectForm(panel, project, sortOrder, done) {
   panel.innerHTML = `
     <form class="card form" id="project-form">
       <div class="panel-head">
-        <h2>${project ? `تعديل: ${esc(p.name)}` : 'مشروع جديد'}</h2>
-        <button type="button" class="btn btn--ghost" id="cancel">رجوع</button>
+        <h2>${project ? `Edit: ${esc(p.name)}` : 'New project'}</h2>
+        <button type="button" class="btn btn--ghost" id="cancel">Back</button>
       </div>
 
       <div class="field-pair">
-        ${field('name', 'اسم البراند', p.name, { dir: 'ltr' })}
-        ${field('url', 'لينك المتجر', p.url, { dir: 'ltr', type: 'url' })}
+        ${field('name', 'Brand name', p.name, { dir: 'ltr' })}
+        ${field('url', 'Store link', p.url, { dir: 'ltr', type: 'url' })}
       </div>
       <div class="checks">
-        <label><input type="checkbox" name="featured" ${p.featured ? 'checked' : ''} /> المشروع الرئيسي (الكارت الكبير)</label>
-        <label><input type="checkbox" name="published" ${p.published === false ? '' : 'checked'} /> ظاهر في الموقع</label>
+        <label><input type="checkbox" name="featured" ${p.featured ? 'checked' : ''} /> Featured project (the wide card)</label>
+        <label><input type="checkbox" name="published" ${p.published === false ? '' : 'checked'} /> Visible on the site</label>
       </div>
 
-      ${bilingual('category', 'التصنيف', p.category)}
+      ${bilingual('category', 'Category', p.category)}
 
       <fieldset>
-        <legend>الرقم أو الهايلايت</legend>
-        <p class="muted">لو عندك رقم حقيقي اكتبه. لو مفيش، سيب الرقم فاضي واكتب هايلايت.</p>
-        ${field('metric_value', 'الرقم', p.metric?.value, { dir: 'ltr', hint: 'مثال: ×5 أو 1000+' })}
-        ${bilingual('metric_label', 'وصف الرقم', p.metric?.label)}
-        ${bilingual('highlight', 'الهايلايت', p.highlight)}
+        <legend>Number or highlight</legend>
+        <p class="muted">If you have a real number, enter it. If not, leave the number empty and write a highlight.</p>
+        ${field('metric_value', 'Number', p.metric?.value, { dir: 'ltr', hint: 'Example: ×5 or 1000+' })}
+        ${bilingual('metric_label', 'Number label', p.metric?.label)}
+        ${bilingual('highlight', 'Highlight', p.highlight)}
       </fieldset>
 
-      ${bilingual('one_liner', 'سطر مختصر', p.one_liner, { textarea: true })}
-      ${bilingual('challenge', 'التحدي (اختياري)', p.challenge, { textarea: true })}
-      ${bilingual('what_i_built', 'اللي بنيته', p.what_i_built, { textarea: true })}
-      ${bilingual('result', 'النتيجة (اختياري)', p.result, { textarea: true })}
+      ${bilingual('one_liner', 'One-liner', p.one_liner, { textarea: true })}
+      ${bilingual('challenge', 'Challenge (optional)', p.challenge, { textarea: true })}
+      ${bilingual('what_i_built', 'What I built', p.what_i_built, { textarea: true })}
+      ${bilingual('result', 'Result (optional)', p.result, { textarea: true })}
       <div class="field-pair">
-        ${field('tags_ar', 'التاجز (عربي)', (p.tags?.ar || []).join('، '), { hint: 'افصل بينهم بفاصلة' })}
-        ${field('tags_en', 'Tags (English)', (p.tags?.en || []).join(', '), { dir: 'ltr' })}
+        ${field('tags_en', 'Tags (English)', (p.tags?.en || []).join(', '), { hint: 'Separate with commas' })}
+        ${field('tags_ar', 'Tags (Arabic)', (p.tags?.ar || []).join('، '), { dir: 'rtl' })}
       </div>
 
       <div class="field-pair">${SHOTS.map((shot) => shotField(shot, p.screenshots)).join('')}</div>
 
       <p class="form-error" id="form-error"></p>
-      <button type="submit" class="btn btn--primary">حفظ</button>
+      <button type="submit" class="btn btn--primary">Save</button>
     </form>`;
 
   panel.querySelector('#cancel').addEventListener('click', done);
@@ -83,19 +83,19 @@ async function save(form, project, sortOrder, done) {
   const name = data.get('name').trim();
   const url = data.get('url').trim();
   const id = project?.id || slugify(name);
-  if (!name || !url) return showError('اكتب اسم البراند ولينك المتجر.');
-  if (!id) return showError('اسم البراند لازم يكون فيه حروف إنجليزي أو أرقام علشان يتعمله ID.');
+  if (!name || !url) return showError('Enter the brand name and the store link.');
+  if (!id) return showError('The brand name needs English letters or numbers so an ID can be made from it.');
 
   let domain;
   try {
     domain = new URL(url).hostname.replace(/^www\./, '');
   } catch {
-    return showError('لينك المتجر مش صحيح. لازم يبدأ بـ https://');
+    return showError('That store link is not valid. It has to start with https://');
   }
 
   const button = form.querySelector('[type="submit"]');
   button.disabled = true;
-  button.textContent = 'بيحفظ…';
+  button.textContent = 'Saving…';
 
   try {
     const screenshots = { ...(project?.screenshots || {}) };
@@ -130,7 +130,7 @@ async function save(form, project, sortOrder, done) {
 
     if (!project) {
       const { data: clash } = await supabase.from('projects').select('id').eq('id', id).maybeSingle();
-      if (clash) throw new Error('فيه مشروع بنفس الاسم ده بالفعل.');
+      if (clash) throw new Error('A project with this name already exists.');
     }
     // only one project can hold the wide featured slot
     if (row.featured) {
@@ -140,12 +140,12 @@ async function save(form, project, sortOrder, done) {
     const { error } = await supabase.from('projects').upsert(row);
     if (error) throw error;
 
-    toast('المشروع اتحفظ');
+    toast('Project saved');
     done();
   } catch (error) {
-    failed(error, 'حفظ المشروع');
+    failed(error, 'Saving project');
     showError(error.message);
     button.disabled = false;
-    button.textContent = 'حفظ';
+    button.textContent = 'Save';
   }
 }

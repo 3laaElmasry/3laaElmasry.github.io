@@ -5,12 +5,12 @@ export function renderLogin(root, message = '') {
   root.innerHTML = `
     <main class="login">
       <form class="card login__card" id="login-form">
-        <h1>لوحة التحكم</h1>
-        <p class="muted">سجّل دخولك علشان تعدّل المشاريع والمهارات والروابط.</p>
-        <label class="field"><span>الإيميل</span><input type="email" name="email" dir="ltr" autocomplete="username" required /></label>
-        <label class="field"><span>الباسورد</span><input type="password" name="password" dir="ltr" autocomplete="current-password" required /></label>
+        <h1>Dashboard</h1>
+        <p class="muted">Sign in to edit projects, skills and links.</p>
+        <label class="field"><span>Email</span><input type="email" name="email" dir="ltr" autocomplete="username" required /></label>
+        <label class="field"><span>Password</span><input type="password" name="password" dir="ltr" autocomplete="current-password" required /></label>
         <p class="form-error" id="login-error">${esc(message)}</p>
-        <button class="btn btn--primary" type="submit">دخول</button>
+        <button class="btn btn--primary" type="submit">Sign in</button>
       </form>
     </main>`;
 
@@ -25,7 +25,7 @@ export function renderLogin(root, message = '') {
     });
     button.disabled = false;
     if (error) {
-      root.querySelector('#login-error').textContent = 'الإيميل أو الباسورد مش صح.';
+      root.querySelector('#login-error').textContent = 'Wrong email or password.';
     }
     // on success, the auth listener in main.js swaps in the dashboard
   });

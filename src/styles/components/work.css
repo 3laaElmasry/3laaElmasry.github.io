@@ -87,7 +87,7 @@
   direction: ltr;
   unicode-bidi: isolate;
   font-family: var(--font-numeric);
-  font-weight: 400;
+  font-weight: 800;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
@@ -97,7 +97,6 @@
 
 .featured-project__metric--highlight {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: var(--fs-h3);
   color: var(--accent);
 }

@@ -35,7 +35,7 @@
 .stats__value {
   font-family: var(--font-numeric);
   font-size: var(--fs-stat);
-  font-weight: 400;
+  font-weight: 800;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;

@@ -56,9 +56,9 @@ html[dir='rtl'] .scroll-progress {
   font-family: var(--font-numeric);
   direction: ltr;
   unicode-bidi: isolate;
-  font-size: 1.7rem;
-  font-weight: 400;
-  font-style: italic;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
   color: var(--ink);
 }
 

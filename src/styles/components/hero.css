@@ -31,7 +31,6 @@
 
 .hero__headline {
   font-size: var(--fs-hero);
-  font-weight: 400;
   line-height: 1.02;
   max-width: 13ch;
 }

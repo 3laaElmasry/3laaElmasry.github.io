@@ -7,9 +7,9 @@ import { renderLinks } from './links.js';
 
 const root = document.getElementById('admin');
 const TABS = [
-  { id: 'projects', label: 'المشاريع', render: renderProjects },
-  { id: 'skills', label: 'المهارات', render: renderSkills },
-  { id: 'links', label: 'الروابط والتواصل', render: renderLinks },
+  { id: 'projects', label: 'Projects', render: renderProjects },
+  { id: 'skills', label: 'Skills', render: renderSkills },
+  { id: 'links', label: 'Links and contact', render: renderLinks },
 ];
 let currentUserId = null;
 
@@ -21,8 +21,8 @@ function renderShell(email) {
         ${TABS.map((tab) => `<button type="button" role="tab" class="tab" data-tab="${tab.id}">${tab.label}</button>`).join('')}
       </nav>
       <div class="admin-bar__end">
-        <a class="link" href="/" target="_blank" rel="noopener">افتح الموقع</a>
-        <button type="button" class="btn btn--ghost" id="sign-out" title="${email}">خروج</button>
+        <a class="link" href="/" target="_blank" rel="noopener">View site</a>
+        <button type="button" class="btn btn--ghost" id="sign-out" title="${email}">Sign out</button>
       </div>
     </header>
     <main class="admin-main" id="panel"></main>`;
@@ -39,7 +39,7 @@ function openTab(id) {
     button.setAttribute('aria-selected', String(button.dataset.tab === id))
   );
   const panel = root.querySelector('#panel');
-  panel.innerHTML = '<p class="muted">بيحمّل…</p>';
+  panel.innerHTML = '<p class="muted">Loading…</p>';
   TABS.find((tab) => tab.id === id).render(panel);
 }
 
@@ -56,7 +56,7 @@ async function showFor(session) {
     renderShell(session.user.email);
   } else {
     await supabase.auth.signOut();
-    renderLogin(root, 'الحساب ده مش مسموحله يعدّل. لازم يتضاف كأدمن من Supabase.');
+    renderLogin(root, 'This account is not allowed to edit. It has to be added as an admin in Supabase.');
   }
 }
 

@@ -9,7 +9,7 @@ export async function renderLinks(panel) {
     supabase.from('site_settings').select('value').eq('key', 'contact').maybeSingle(),
     supabase.from('socials').select('*').order('sort_order'),
   ]);
-  if (failed(contact.error || list.error, 'تحميل الروابط')) return;
+  if (failed(contact.error || list.error, 'Loading links')) return;
   socials = list.data;
   draw(panel, contact.data?.value || {});
 }
@@ -18,38 +18,38 @@ function socialRow(social) {
   return `
     <form class="card form social" data-id="${esc(social.id)}" data-kind="social">
       <div class="field-pair field-pair--3">
-        ${field('label', 'الاسم', social.label, { dir: 'ltr' })}
-        ${field('url', 'اللينك', social.url, { dir: 'ltr', type: 'url' })}
-        <label class="field"><span>الأيقونة</span>
+        ${field('label', 'Name', social.label, { dir: 'ltr' })}
+        ${field('url', 'Link', social.url, { dir: 'ltr', type: 'url' })}
+        <label class="field"><span>Icon</span>
           <select name="icon" dir="ltr">
             ${SOCIAL_ICONS.map((name) => `<option ${name === social.icon ? 'selected' : ''}>${name}</option>`).join('')}
           </select>
         </label>
       </div>
       <div class="row__actions">
-        <label class="check"><input type="checkbox" name="visible" ${social.visible === false ? '' : 'checked'} /> ظاهر في الموقع</label>
-        <button type="submit" class="btn btn--primary">حفظ</button>
-        <button type="button" class="btn btn--danger" data-action="delete">مسح</button>
+        <label class="check"><input type="checkbox" name="visible" ${social.visible === false ? '' : 'checked'} /> Visible on the site</label>
+        <button type="submit" class="btn btn--primary">Save</button>
+        <button type="button" class="btn btn--danger" data-action="delete">Delete</button>
       </div>
     </form>`;
 }
 
 function draw(panel, contact) {
   panel.innerHTML = `
-    <div class="panel-head"><div><h2>التواصل</h2><p class="muted">الواتساب والإيميل والتليفون اللي بيظهروا في كل الزراير.</p></div></div>
+    <div class="panel-head"><div><h2>Contact</h2><p class="muted">The WhatsApp number, email and phone used by every button on the site.</p></div></div>
     <form class="card form" data-kind="contact">
       <div class="field-pair field-pair--3">
-        ${field('whatsappNumber', 'رقم الواتساب', contact.whatsappNumber, { dir: 'ltr', hint: 'بكود الدولة ومن غير + أو مسافات. مثال: 201080850238' })}
-        ${field('phone', 'التليفون زي ما يتكتب في الموقع', contact.phone, { dir: 'ltr' })}
-        ${field('email', 'الإيميل', contact.email, { dir: 'ltr', type: 'email' })}
+        ${field('whatsappNumber', 'WhatsApp number', contact.whatsappNumber, { dir: 'ltr', hint: 'With country code, no + or spaces. Example: 201080850238' })}
+        ${field('phone', 'Phone as shown on the site', contact.phone, { dir: 'ltr' })}
+        ${field('email', 'Email', contact.email, { dir: 'ltr', type: 'email' })}
       </div>
-      ${bilingual('whatsappMessage', 'الرسالة الجاهزة على واتساب', contact.whatsappMessage, { textarea: true })}
-      <button type="submit" class="btn btn--primary">حفظ التواصل</button>
+      ${bilingual('whatsappMessage', 'Prefilled WhatsApp message', contact.whatsappMessage, { textarea: true })}
+      <button type="submit" class="btn btn--primary">Save contact</button>
     </form>
 
     <div class="panel-head">
-      <div><h2>السوشيال ميديا</h2><p class="muted">بتظهر في سكشن التواصل وفي الفوتر.</p></div>
-      <button type="button" class="btn btn--primary" data-action="add">لينك جديد</button>
+      <div><h2>Social media</h2><p class="muted">Shown in the contact section and the footer.</p></div>
+      <button type="button" class="btn btn--primary" data-action="add">New link</button>
     </div>
     <div class="stack">${socials.map(socialRow).join('')}</div>`;
 
@@ -69,16 +69,16 @@ async function onSave(event, panel) {
       email: data.get('email').trim(),
       whatsappMessage: readPair(data, 'whatsappMessage'),
     };
-    if (!value.whatsappNumber) return toast('اكتب رقم الواتساب.', true);
+    if (!value.whatsappNumber) return toast('Enter a WhatsApp number.', true);
     const { error } = await supabase.from('site_settings').upsert({ key: 'contact', value });
-    if (!failed(error, 'حفظ التواصل')) toast('بيانات التواصل اتحفظت');
+    if (!failed(error, 'Save contact')) toast('Contact details saved');
     return;
   }
 
   const existing = socials.find((social) => social.id === form.dataset.id);
   const label = data.get('label').trim();
   const url = data.get('url').trim();
-  if (!label || !url) return toast('اكتب الاسم واللينك.', true);
+  if (!label || !url) return toast('Enter a name and a link.', true);
   const row = {
     id: existing.isNew ? `${slugify(label) || 'link'}-${Date.now().toString(36)}` : existing.id,
     sort_order: socials.indexOf(existing),
@@ -88,8 +88,8 @@ async function onSave(event, panel) {
     visible: data.get('visible') === 'on',
   };
   const { error } = await supabase.from('socials').upsert(row);
-  if (failed(error, 'حفظ اللينك')) return;
-  toast('اللينك اتحفظ');
+  if (failed(error, 'Saving link')) return;
+  toast('Link saved');
   renderLinks(panel);
 }
 
@@ -107,8 +107,8 @@ async function onAction(event, panel, contact) {
   const social = socials.find((item) => item.id === id);
   if (!social.isNew) {
     const { error } = await supabase.from('socials').delete().eq('id', id);
-    if (failed(error, 'مسح اللينك')) return;
+    if (failed(error, 'Deleting link')) return;
   }
-  toast('اللينك اتمسح');
+  toast('Link deleted');
   renderLinks(panel);
 }
