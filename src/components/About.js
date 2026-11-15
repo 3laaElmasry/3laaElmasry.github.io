@@ -1,62 +1,79 @@
 import { t } from '../i18n/index.js';
-import { Timeline } from './Timeline.js';
-import { CarouselNav } from './CarouselNav.js';
-import { initCarousel } from '../utils/carousel.js';
+import { icon } from '../utils/icons.js';
+import { proofStats, weja } from '../data/experience.js';
+import { devProjects } from '../data/devProjects.js';
+import { SkillsGroups, initSkillsGroups } from './SkillsGroups.js';
+import { DevProjectCard } from './DevProjectCard.js';
 
 import portraitWebp from '../assets/images/hero/hero-800.webp';
 import portraitJpg from '../assets/images/hero/hero-1200.jpg';
 
-export function About() {
+// One section for the person behind the work: the story, the engineering
+// proof, the skills and the side projects, laid out as a bento grid.
+export function About(lang) {
+  const timeline = t('about.timeline.items');
   return `
     <section id="about" class="about">
-      <div class="container about__grid">
-        <div class="about__main">
-          <div class="section-head reveal">
-            <span class="section-head__eyebrow mono">${t('about.eyebrow')}</span>
-            <h2 class="section-head__title">${t('about.title')}</h2>
-          </div>
-
-          <div class="carousel-head timeline__head reveal">
-            <h3 class="timeline__title">${t('about.timeline.title')}</h3>
-            ${CarouselNav('timeline-track', t('about.timeline.prev'), t('about.timeline.next'))}
-          </div>
-          <div class="carousel-track timeline" id="timeline-track" tabindex="0" role="region" aria-label="${t('about.timeline.title')}">
-            ${Timeline()}
-          </div>
-
-          <div class="about__block reveal">
-            <h3 class="about__block-title">${t('about.differentiatorTitle')}</h3>
-            <p class="about__block-text">${t('about.differentiator')}</p>
-          </div>
-
-          <div class="carousel-head about__meta-head reveal">
-            <span class="visually-hidden">${t('about.marketsTitle')}</span>
-            ${CarouselNav('about-meta-track', t('about.metaPrev'), t('about.metaNext'))}
-          </div>
-          <div class="carousel-track about__meta" id="about-meta-track" tabindex="0" role="region" aria-label="${t('about.marketsTitle')}">
-            <div class="about__meta-item">
-              <h4 class="about__meta-title mono">${t('about.marketsTitle')}</h4>
-              <p>${t('about.markets')}</p>
-            </div>
-            <div class="about__meta-item">
-              <h4 class="about__meta-title mono">${t('about.educationTitle')}</h4>
-              <p>${t('about.education')}</p>
-            </div>
-          </div>
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-head__title">${t('engineering.title')}</h2>
+          <p class="section-head__subtitle">${t('engineering.subtitle')}</p>
         </div>
 
-        <div class="about__portrait-wrap reveal">
-          <picture>
-            <source type="image/webp" srcset="${portraitWebp}" />
-            <img
-              src="${portraitJpg}"
-              alt="${t('hero.heroAlt')}"
-              width="400"
-              height="400"
-              loading="lazy"
-              class="about__portrait"
-            />
-          </picture>
+        <div class="about__bento">
+          <article class="bento bento--story reveal">
+            <picture>
+              <source type="image/webp" srcset="${portraitWebp}" />
+              <img src="${portraitJpg}" alt="${t('hero.heroAlt')}" width="96" height="96" loading="lazy" class="about__avatar" />
+            </picture>
+            <h3 class="bento__title">${t('about.title')}</h3>
+            <p class="bento__text">${t('about.differentiator')}</p>
+            <ul class="about__facts">
+              <li>${icon('globe')}<span>${t('about.markets')}</span></li>
+              <li>${icon('education')}<span>${t('about.education')}</span></li>
+            </ul>
+          </article>
+
+          <article class="bento bento--journey reveal" data-reveal-delay="60">
+            <h3 class="bento__label">${t('about.timeline.title')}</h3>
+            <ol class="journey">
+              ${timeline
+                .map((item) => `<li><span class="journey__when">${item.year}</span><span class="journey__what">${item.text}</span></li>`)
+                .join('')}
+            </ol>
+          </article>
+
+          <div class="about__proof reveal" data-reveal-delay="120">
+            ${proofStats
+              .map(
+                (stat) => `
+              <div class="bento bento--stat">
+                <span class="bento__value">${stat.value}</span>
+                <span class="bento__caption">${t(stat.labelKey)}</span>
+              </div>`
+              )
+              .join('')}
+          </div>
+
+          <article class="bento bento--skills reveal">
+            <h3 class="bento__label">${t('engineering.skills.title')}</h3>
+            ${SkillsGroups()}
+          </article>
+
+          <article class="bento bento--experience reveal" data-reveal-delay="60">
+            <h3 class="bento__label">${t(weja.titleKey)} · ${weja.company}</h3>
+            <p class="bento__meta">${t(weja.periodKey)}</p>
+            <ul class="about__bullets">
+              ${t(weja.bulletsKey).slice(0, 3).map((bullet) => `<li>${bullet}</li>`).join('')}
+            </ul>
+          </article>
+
+          <article class="bento bento--dev reveal" data-reveal-delay="120">
+            <h3 class="bento__label">${t('engineering.devProjects.title')}</h3>
+            <ul class="dev-projects">
+              ${devProjects.map((project) => DevProjectCard(project, lang)).join('')}
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -64,6 +81,5 @@ export function About() {
 }
 
 export function initAbout() {
-  initCarousel('timeline-track');
-  initCarousel('about-meta-track');
+  initSkillsGroups();
 }

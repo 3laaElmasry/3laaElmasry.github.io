@@ -2,8 +2,6 @@ import { t } from '../i18n/index.js';
 import { icon, socialIcon } from '../utils/icons.js';
 import { getWhatsAppUrl } from '../utils/whatsapp.js';
 import { getSite, getSocials } from '../content/store.js';
-import { CarouselNav } from './CarouselNav.js';
-import { initCarousel } from '../utils/carousel.js';
 
 export function Contact(lang) {
   const site = getSite();
@@ -12,43 +10,22 @@ export function Contact(lang) {
   return `
     <section id="contact" class="contact">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="section-head__eyebrow mono">${t('contact.eyebrow')}</span>
+        <div class="contact__panel reveal">
           <h2 class="contact__title">${t('contact.title')}</h2>
-        </div>
-
-        <div class="carousel-head contact__cards-head reveal">
-          <span class="visually-hidden">${t('contact.eyebrow')}</span>
-          ${CarouselNav('contact-cards-track', t('contact.prev'), t('contact.next'))}
-        </div>
-        <div class="carousel-track contact__cards" id="contact-cards-track" tabindex="0" role="region" aria-label="${t('contact.eyebrow')}">
-          <a class="contact-card" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
-            <span class="contact-card__icon contact-card__icon--whatsapp">${icon('whatsapp')}</span>
-            <span class="contact-card__label mono">${t('contact.whatsapp')}</span>
-            <span class="contact-card__value">${site.phone}</span>
-          </a>
-          <a class="contact-card" href="mailto:${site.email}">
-            <span class="contact-card__icon">${icon('email')}</span>
-            <span class="contact-card__label mono">${t('contact.email')}</span>
-            <span class="contact-card__value">${site.email}</span>
-          </a>
-          <a class="contact-card" href="${telHref}">
-            <span class="contact-card__icon">${icon('phone')}</span>
-            <span class="contact-card__label mono">${t('contact.phone')}</span>
-            <span class="contact-card__value">${site.phone}</span>
-          </a>
-        </div>
-
-        <div class="contact__socials reveal">
-          <h3 class="contact__socials-title mono">${t('contact.socialsTitle')}</h3>
-          <div class="contact__socials-row">
+          <div class="contact__actions">
+            <a class="btn btn--whatsapp contact__cta" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
+              ${icon('whatsapp')}<span>${t('hero.ctaPrimary')}</span>
+            </a>
+            <a class="contact__link" href="mailto:${site.email}">${icon('email')}<span>${site.email}</span></a>
+            <a class="contact__link" href="${telHref}">${icon('phone')}<span dir="ltr">${site.phone}</span></a>
+          </div>
+          <div class="contact__socials" aria-label="${t('contact.socialsTitle')}">
             ${getSocials()
               .map(
                 (social) => `
-                  <a class="contact__social-link" href="${social.url}" target="_blank" rel="noopener" aria-label="${social.label}">
-                    ${socialIcon(social.icon)}
-                  </a>
-                `
+              <a class="contact__social-link" href="${social.url}" target="_blank" rel="noopener" aria-label="${social.label}">
+                ${socialIcon(social.icon)}
+              </a>`
               )
               .join('')}
           </div>
@@ -56,8 +33,4 @@ export function Contact(lang) {
       </div>
     </section>
   `;
-}
-
-export function initContact() {
-  initCarousel('contact-cards-track');
 }

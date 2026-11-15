@@ -15,7 +15,6 @@ export function Work(lang) {
     <section id="work" class="work">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-head__eyebrow mono">${t('work.eyebrow')}</span>
           <h2 class="section-head__title">${t('work.title')}</h2>
           <p class="section-head__subtitle">${t('work.subtitle')}</p>
         </div>

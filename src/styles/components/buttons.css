@@ -3,11 +3,10 @@
   align-items: center;
   gap: var(--space-2);
   font-family: var(--font-body);
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--fs-body);
-  letter-spacing: 0.02em;
-  padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-sm);
+  padding: 14px var(--space-6);
+  border-radius: var(--radius-pill);
   white-space: nowrap;
   transition: transform var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease),
     border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);

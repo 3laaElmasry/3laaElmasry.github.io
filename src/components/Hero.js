@@ -2,6 +2,7 @@ import { t } from '../i18n/index.js';
 import { getWhatsAppUrl } from '../utils/whatsapp.js';
 import { icon } from '../utils/icons.js';
 import { qs, qsa } from '../utils/dom.js';
+import { scrollToElement } from '../utils/smoothScroll.js';
 
 import hero800 from '../assets/images/hero/hero-800.webp';
 import hero1200 from '../assets/images/hero/hero-1200.webp';
@@ -74,7 +75,7 @@ export function initHero() {
       const id = btn.dataset.scrollProject;
       const target = qs(`[data-project-id="${id}"]`);
       if (!target) return;
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      scrollToElement(target, { center: true });
       target.classList.add('project-card--highlight');
       setTimeout(() => target.classList.remove('project-card--highlight'), 1800);
     });

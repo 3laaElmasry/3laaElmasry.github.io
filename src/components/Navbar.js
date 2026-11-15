@@ -1,20 +1,31 @@
 import { t, getLang, setLang } from '../i18n/index.js';
 import { getWhatsAppUrl } from '../utils/whatsapp.js';
-import { icon } from '../utils/icons.js';
+import { icon, socialIcon } from '../utils/icons.js';
 import { qs, qsa } from '../utils/dom.js';
-import { getSite } from '../content/store.js';
+import { getSite, getSocials } from '../content/store.js';
 import { initNavScroll } from '../utils/navScroll.js';
 
 // must match the .mobile-menu transition in navbar.css
 const MENU_CLOSE_MS = 320;
 
 const NAV_LINKS = [
-  { href: '#work', key: 'nav.work' },
-  { href: '#services', key: 'nav.services' },
-  { href: '#engineering', key: 'nav.engineering' },
-  { href: '#about', key: 'nav.about' },
-  { href: '#contact', key: 'nav.contact' },
+  { href: '#work', key: 'nav.work', icon: 'work' },
+  { href: '#services', key: 'nav.services', icon: 'services' },
+  { href: '#about', key: 'nav.about', icon: 'about' },
+  { href: '#contact', key: 'nav.contact', icon: 'email' },
 ];
+
+// The mobile sheet shows each destination as a full-width row: icon, label, chevron.
+function menuRowsHtml() {
+  return NAV_LINKS.map(
+    (link, index) => `
+      <a href="${link.href}" class="mobile-menu__link" style="--i:${index}">
+        <span class="mobile-menu__icon" aria-hidden="true">${icon(link.icon)}</span>
+        <span class="mobile-menu__label">${t(link.key)}</span>
+        <span class="mobile-menu__chevron" aria-hidden="true">${icon('chevronRight')}</span>
+      </a>`
+  ).join('');
+}
 
 function navLinksHtml(idPrefix) {
   return NAV_LINKS.map(
@@ -51,12 +62,23 @@ export function Navbar(lang) {
         <button type="button" class="mobile-menu__close" id="mobile-menu-close" aria-label="${t('nav.menuClose')}">
           ${icon('close')}
         </button>
+        <span class="mobile-menu__logo">${getSite().logoText}</span>
         <nav class="mobile-menu__links" aria-label="Mobile">
-          ${navLinksHtml('mobile-menu')}
+          ${menuRowsHtml()}
         </nav>
-        <a class="btn btn--whatsapp mobile-menu__whatsapp" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
-          ${icon('whatsapp')}<span>${t('nav.whatsapp')}</span>
-        </a>
+        <div class="mobile-menu__foot">
+          <a class="btn btn--whatsapp mobile-menu__whatsapp" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">
+            ${icon('whatsapp')}<span>${t('hero.ctaPrimary')}</span>
+          </a>
+          <div class="mobile-menu__socials">
+            ${getSocials()
+              .map(
+                (social) =>
+                  `<a href="${social.url}" target="_blank" rel="noopener" aria-label="${social.label}">${socialIcon(social.icon)}</a>`
+              )
+              .join('')}
+          </div>
+        </div>
       </div>
     </div>
   `;

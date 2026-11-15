@@ -1,13 +1,11 @@
 import { Navbar, initNavbar } from './components/Navbar.js';
 import { Hero, initHero } from './components/Hero.js';
-import { StatsStrip, initStatsStrip } from './components/StatsStrip.js';
+import { StatsStrip } from './components/StatsStrip.js';
 import { BrandsMarquee } from './components/BrandsMarquee.js';
 import { Work, initWork } from './components/Work.js';
-import { Services, initServices } from './components/Services.js';
-import { Process, initProcess } from './components/Process.js';
-import { Engineering, initEngineering } from './components/Engineering.js';
+import { Services } from './components/Services.js';
 import { About, initAbout } from './components/About.js';
-import { Contact, initContact } from './components/Contact.js';
+import { Contact } from './components/Contact.js';
 import { Footer } from './components/Footer.js';
 import { WhatsAppFab } from './components/WhatsAppFab.js';
 import { ProjectModal, initProjectModal } from './components/ProjectModal.js';
@@ -25,8 +23,6 @@ export function renderApp(lang) {
       ${BrandsMarquee(lang)}
       ${Work(lang)}
       ${Services(lang)}
-      ${Process(lang)}
-      ${Engineering(lang)}
       ${About(lang)}
       ${Contact(lang)}
     </main>
@@ -37,13 +33,8 @@ export function renderApp(lang) {
 
   initNavbar(lang);
   initHero(lang);
-  initStatsStrip();
   initWork(lang);
-  initServices();
-  initProcess();
-  initEngineering();
   initAbout();
-  initContact();
   initProjectModal(lang);
   initReveal();
   initCounters();

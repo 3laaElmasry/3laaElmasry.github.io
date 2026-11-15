@@ -1,56 +1,69 @@
 .stats {
-  padding-block: var(--space-7);
-  border-block: 1px solid var(--line);
+  padding-block: 0 var(--space-6);
 }
 
-.stats__head {
-  margin-block-end: var(--space-5);
-  justify-content: flex-end;
+.stats__band {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
-/* all four stats fit on one row from tablet up, so the arrows are only needed on phones */
-@media (min-width: 640px) {
-  .stats .stats__head {
-    display: none;
+@media (min-width: 820px) {
+  .stats__band {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 .stats__item {
-  width: 42%;
-  text-align: center;
-  padding: var(--space-5) var(--space-4);
-  border-inline-start: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--bg);
 }
 
-.stats__item:first-child {
-  border-inline-start: 0;
+.stats__icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  background: var(--accent-glow);
+  color: var(--accent);
 }
 
-@media (min-width: 640px) {
-  .stats__item {
-    width: calc(25% - var(--space-5) * 3 / 4);
-  }
+.stats__icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .stats__value {
   font-family: var(--font-numeric);
   font-size: var(--fs-stat);
   font-weight: 800;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-block-end: var(--space-3);
+  color: var(--ink);
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .stats__label {
   font-size: var(--fs-small);
-  letter-spacing: 0.06em;
-  color: var(--ink-2);
+  color: var(--ink-3);
 }
 
-html[lang='ar'] .stats__label {
-  letter-spacing: 0;
+@media (max-width: 480px) {
+  .stats__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
 }

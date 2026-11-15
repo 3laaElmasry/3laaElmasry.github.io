@@ -16,18 +16,3 @@ export function getProjectImage(filename) {
   if (/^https?:\/\//.test(filename)) return filename;
   return imageMap[filename] || '';
 }
-
-const themeModules = import.meta.glob('../assets/images/themes/*.{webp,jpg,jpeg,png}', {
-  eager: true,
-  import: 'default',
-});
-
-const themeImageMap = {};
-for (const path in themeModules) {
-  const filename = path.split('/').pop();
-  themeImageMap[filename] = themeModules[path];
-}
-
-export function getThemeImage(filename) {
-  return themeImageMap[filename] || '';
-}

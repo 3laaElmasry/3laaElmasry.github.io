@@ -117,3 +117,12 @@ Converted every remaining static grid into a carousel using the shared `utils/ca
 
 - English type is now Plus Jakarta Sans throughout (bold, tightly tracked headings and numerals). The owner did not like the Instrument Serif headings; Arabic fonts are unchanged.
 - The admin dashboard is English and left-to-right, in the same typeface. Arabic content fields stay right-to-left.
+
+## 2026-11-15 — Shorter page, new cards, icons, smooth scrolling (owner request, full freedom given)
+
+- **Page length:** desktop went from about 8,900px to about 6,200px. Stats became one band under the hero; Process moved inside Services; Engineering and About merged into one bento section; Contact became a single panel. Every carousel was removed along with the shared carousel code.
+- **Skills as tabs** instead of a card per group, so the section does not grow when groups are added from the dashboard.
+- **Service cards** dropped the theme-demo screenshots: they made each card very tall and showed stores that are not the owner's work. `DesignToTheme.js` and the theme image loader went with them (the image files and the capture script are still in the repo).
+- **Icons:** `lucide-static@1.73.0`, pinned. Only the imported icons end up in the bundle.
+- **Smooth scrolling** is done in JS rather than `scroll-behavior: smooth` so the duration and easing are the same in every browser and the floating header offset is respected.
+- **A UI/UX skill was looked up** on skills.sh as the owner asked. The listing pages expose only an overview (judge an interface by whether people can finish their task; design every state; name tokens by role), so the redesign leans on those points plus the `frontend-design` skill already in use. Nothing was installed from those repositories.

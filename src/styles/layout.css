@@ -13,18 +13,18 @@
 
 section {
   position: relative;
-  padding-block: 112px;
+  padding-block: 80px;
   z-index: 2;
 }
 
 @media (max-width: 640px) {
   section {
-    padding-block: var(--space-8);
+    padding-block: 56px;
   }
 }
 
 .section-head {
-  margin-block-end: var(--space-7);
+  margin-block-end: var(--space-6);
   max-width: 640px;
 }
 

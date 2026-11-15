@@ -18,6 +18,20 @@ Projects, skill groups, social links and contact details are now **edited from `
 
 ---
 
+## Layout as of 2026-11-15 (supersedes section 4 where they differ)
+
+The owner found the site too long and the cards unattractive, and gave full freedom to restructure. Current page: **Hero → Stats band → Brands marquee → Selected Work → Services (with the four-step process as a band inside it) → About → Contact panel → Footer.**
+
+- **No carousels anywhere.** The shared carousel files were deleted; everything is a grid that fits its content. Selected Work is unchanged in structure.
+- **About** merges the old Engineering and About sections into one bento grid: story, journey, three proof numbers, skills, Weja experience, dev projects. **Skills are tabs** (one group visible at a time), so the block stays one screen tall however many groups the dashboard holds.
+- **Services** are compact icon cards (no theme screenshots). Dev projects are quiet rows, still secondary to the store case studies.
+- **Nav links:** Work, Services, About, Contact. The mobile menu is a sheet of icon rows with the WhatsApp button and socials at the bottom.
+- **Icons:** interface icons come from `lucide-static` through `src/utils/icons.js`; brand marks (WhatsApp, Instagram, TikTok…) stay hand-kept SVGs because Lucide has none. Add an icon by importing it there, never by pasting SVG into a component.
+- **In-page jumps glide** (`src/utils/smoothScroll.js`, 900ms eased, cancelled by any manual scroll, instant under reduced motion). Use `scrollToElement()` instead of `scrollIntoView()`.
+- **Cards:** white, 22px radius, hairline border, `--shadow-soft`; buttons are pills. Sections are 80px apart (56px on phones).
+
+---
+
 ## 0. Operating mode: work autonomously, end to end
 
 - The owner has pre-approved this whole task. **Do not stop to ask for confirmation** between phases. Make sensible decisions, note them in `DECISIONS.md`, and keep going.
