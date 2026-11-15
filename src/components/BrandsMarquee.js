@@ -1,8 +1,9 @@
 import { t } from '../i18n/index.js';
-import { brandNames } from '../data/stats.js';
+import { getProjects } from '../content/store.js';
 
 function trackItems() {
-  return brandNames
+  return getProjects()
+    .map((project) => project.name)
     .map((name) => `<span class="marquee__item">${name}</span>`)
     .join('');
 }

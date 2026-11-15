@@ -8,31 +8,49 @@
   justify-content: flex-end;
 }
 
+/* all four stats fit on one row from tablet up, so the arrows are only needed on phones */
+@media (min-width: 640px) {
+  .stats .stats__head {
+    display: none;
+  }
+}
+
 .stats__item {
   width: 42%;
   text-align: center;
-  padding: var(--space-5);
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  padding: var(--space-5) var(--space-4);
+  border-inline-start: 1px solid var(--line);
+}
+
+.stats__item:first-child {
+  border-inline-start: 0;
 }
 
 @media (min-width: 640px) {
   .stats__item {
-    width: 22%;
+    width: calc(25% - var(--space-5) * 3 / 4);
   }
 }
 
 .stats__value {
-  font-family: var(--font-display);
+  font-family: var(--font-numeric);
   font-size: var(--fs-stat);
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
+  font-weight: 400;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
   margin-block-end: var(--space-3);
 }
 
 .stats__label {
   font-size: var(--fs-small);
+  letter-spacing: 0.06em;
   color: var(--ink-2);
+}
+
+html[lang='ar'] .stats__label {
+  letter-spacing: 0;
 }

@@ -21,6 +21,8 @@
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   margin-block-end: var(--space-6);
+  background: linear-gradient(150deg, #f3effe, var(--bg-card) 55%);
+  box-shadow: var(--shadow-card);
   transition: border-color var(--dur-base) var(--ease);
 }
 
@@ -65,15 +67,13 @@
 }
 
 .featured-project__title {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-h2);
   margin-block-end: var(--space-3);
 }
 
 .featured-project__metric {
-  font-family: var(--font-display);
-  font-size: var(--fs-stat);
-  color: var(--accent);
-  font-weight: 700;
+  font-size: var(--fs-lead);
+  color: var(--accent-light);
   margin-block-end: var(--space-4);
   display: flex;
   align-items: baseline;
@@ -81,13 +81,29 @@
 }
 
 .featured-project__metric-value {
-  font-size: 1.1em;
+  font-size: var(--fs-stat);
+  line-height: 1.1;
+  display: inline-block;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: var(--font-numeric);
+  font-weight: 400;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .featured-project__metric--highlight {
+  font-family: var(--font-display);
+  font-style: italic;
   font-size: var(--fs-h3);
-  font-family: var(--font-mono);
-  text-transform: none;
+  color: var(--accent);
+}
+
+html[lang='ar'] .featured-project__metric--highlight {
+  font-style: normal;
 }
 
 .featured-project__oneliner {

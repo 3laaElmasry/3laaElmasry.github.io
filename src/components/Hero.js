@@ -13,6 +13,14 @@ const QUICK_CHIPS = [
   { projectId: 'naila', key: 'quickChips.speed' },
 ];
 
+// Each word gets its own span so the headline can rise in word by word on load.
+function splitWords(text) {
+  return text
+    .split(' ')
+    .map((word, index) => `<span class="hero__word" aria-hidden="true" style="--i:${index}">${word}</span>`)
+    .join(' ');
+}
+
 export function Hero(lang) {
   return `
     <section class="hero" id="top">
@@ -38,7 +46,7 @@ export function Hero(lang) {
             <span class="availability-pill__dot" aria-hidden="true"></span>
             ${t('hero.availability')}
           </div>
-          <h1 class="hero__headline reveal" data-reveal-delay="140">${t('hero.headline')}</h1>
+          <h1 class="hero__headline" aria-label="${t('hero.headline')}">${splitWords(t('hero.headline'))}</h1>
           <p class="hero__sub reveal" data-reveal-delay="200">${t('hero.sub')}</p>
           <div class="hero__ctas reveal" data-reveal-delay="260">
             <a class="btn btn--primary" href="${getWhatsAppUrl(lang)}" target="_blank" rel="noopener">

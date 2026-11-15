@@ -65,11 +65,17 @@ export const en = {
     prev: 'Previous services',
     next: 'Next services',
     themeImageAlt: 'Example Shopify theme storefront',
+    designToThemeAlt: 'A page design on the left becoming Shopify theme code on the right',
     items: {
       build: {
         title: 'Custom Shopify Store Build',
         description:
           'Built from scratch around your brand and your customers — not a generic template.',
+      },
+      theme: {
+        title: 'Theme Design from Scratch',
+        description:
+          'I design your store from a blank page around your brand, then code that design into a complete Shopify theme. It is yours alone, not a template anyone can buy.',
       },
       redesign: {
         title: 'Redesign & Rebrand',

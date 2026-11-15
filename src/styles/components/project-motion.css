@@ -1,0 +1,112 @@
+/* Motion for the Selected Work section: entrance on scroll, a scroll-linked
+   zoom on the screenshots, and a pointer-following light on hover. */
+
+.project-card,
+.featured-project,
+.service-card {
+  position: relative;
+}
+
+.project-card::after,
+.featured-project::after,
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--accent-glow), transparent 65%);
+  transition: opacity var(--dur-base) var(--ease);
+}
+
+.project-card:hover::after,
+.featured-project:hover::after,
+.service-card:hover::after {
+  opacity: 0.55;
+}
+
+/* Entrance: cards come up from further away than other sections, alternating sides. */
+.project-card.reveal {
+  transform: translateY(56px) scale(0.96);
+  transition-duration: 800ms;
+}
+
+.work__grid .project-card.reveal:nth-child(odd) {
+  transform: translate(-28px, 56px) scale(0.96);
+}
+
+.work__grid .project-card.reveal:nth-child(even) {
+  transform: translate(28px, 56px) scale(0.96);
+}
+
+.project-card.reveal.is-visible,
+.work__grid .project-card.reveal.is-visible:nth-child(odd),
+.work__grid .project-card.reveal.is-visible:nth-child(even) {
+  transform: none;
+}
+
+.work__grid .project-card.reveal.is-visible:nth-child(n):hover,
+.work__grid .project-card.reveal.is-visible:nth-child(n):focus-within {
+  transform: translateY(-4px);
+}
+
+/* Featured project: the two screens slide in from opposite sides. */
+.featured-project .featured-project__desktop,
+.featured-project .featured-project__mobile {
+  opacity: 0;
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+}
+
+.featured-project .featured-project__desktop {
+  transform: translateX(-36px);
+}
+
+.featured-project .featured-project__mobile {
+  transform: translateX(36px);
+  transition-delay: 140ms;
+}
+
+.featured-project.is-visible .featured-project__desktop,
+.featured-project.is-visible .featured-project__mobile {
+  opacity: 1;
+  transform: none;
+}
+
+/* Scroll-linked: each screenshot settles from a slight zoom as its card
+   crosses the viewport. Only where the browser supports scroll timelines. */
+@supports (animation-timeline: view()) {
+  .project-card .browser-frame__viewport,
+  .featured-project .browser-frame__viewport {
+    animation: shot-settle linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 45%;
+  }
+
+  @keyframes shot-settle {
+    from {
+      transform: scale(1.14);
+      filter: saturate(0.6);
+    }
+    to {
+      transform: none;
+      filter: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card.reveal,
+  .work__grid .project-card.reveal:nth-child(odd),
+  .work__grid .project-card.reveal:nth-child(even),
+  .featured-project .featured-project__desktop,
+  .featured-project .featured-project__mobile {
+    opacity: 1;
+    transform: none;
+  }
+
+  .project-card .browser-frame__viewport,
+  .featured-project .browser-frame__viewport {
+    animation: none;
+  }
+}

@@ -4,6 +4,7 @@ import { services } from '../data/services.js';
 import { getThemeImage } from '../utils/images.js';
 import { initCarousel } from '../utils/carousel.js';
 import { CarouselNav } from './CarouselNav.js';
+import { DesignToTheme } from './DesignToTheme.js';
 
 export function Services(lang) {
   return `
@@ -23,7 +24,11 @@ export function Services(lang) {
               (service) => `
             <article class="service-card">
               <div class="service-card__media">
-                <img src="${getThemeImage(service.themeImage)}" alt="${t('services.themeImageAlt')}" loading="lazy" class="service-card__theme-img" />
+                ${
+                  service.themeImage
+                    ? `<img src="${getThemeImage(service.themeImage)}" alt="${t('services.themeImageAlt')}" loading="lazy" class="service-card__theme-img" />`
+                    : DesignToTheme(t('services.designToThemeAlt'))
+                }
               </div>
               <div class="service-card__body">
                 <div class="service-card__icon" aria-hidden="true">${icon(service.icon)}</div>

@@ -9,7 +9,11 @@ for (const path in modules) {
   imageMap[filename] = modules[path];
 }
 
+// A screenshot is either a file bundled with the site or a full URL to an
+// image uploaded from the admin dashboard.
 export function getProjectImage(filename) {
+  if (!filename) return '';
+  if (/^https?:\/\//.test(filename)) return filename;
   return imageMap[filename] || '';
 }
 

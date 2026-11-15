@@ -2,7 +2,11 @@ import { t, getLang, setLang } from '../i18n/index.js';
 import { getWhatsAppUrl } from '../utils/whatsapp.js';
 import { icon } from '../utils/icons.js';
 import { qs, qsa } from '../utils/dom.js';
-import { site } from '../data/site.js';
+import { getSite } from '../content/store.js';
+import { initNavScroll } from '../utils/navScroll.js';
+
+// must match the .mobile-menu transition in navbar.css
+const MENU_CLOSE_MS = 320;
 
 const NAV_LINKS = [
   { href: '#work', key: 'nav.work' },
@@ -14,16 +18,18 @@ const NAV_LINKS = [
 
 function navLinksHtml(idPrefix) {
   return NAV_LINKS.map(
-    (link) => `<a href="${link.href}" class="${idPrefix}__link">${t(link.key)}</a>`
+    (link, index) =>
+      `<a href="${link.href}" class="${idPrefix}__link" data-nav-target="${link.href.slice(1)}" style="--i:${index}">${t(link.key)}</a>`
   ).join('');
 }
 
 export function Navbar(lang) {
   const otherLangLabel = t('nav.langToggle');
   return `
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <header class="navbar" id="navbar">
       <div class="container navbar__inner">
-        <a href="#top" class="navbar__logo">${site.logoText}</a>
+        <a href="#top" class="navbar__logo">${getSite().logoText}</a>
         <nav class="navbar__links" aria-label="Primary">
           ${navLinksHtml('navbar')}
         </nav>
@@ -63,11 +69,7 @@ export function initNavbar() {
   const closeBtn = qs('#mobile-menu-close');
   const langToggle = qs('#lang-toggle');
 
-  const onScroll = () => {
-    navbar.classList.toggle('navbar--scrolled', window.scrollY > 10);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  initNavScroll(navbar);
 
   function getFocusable() {
     return qsa('a[href], button:not([disabled])', menu);
@@ -88,15 +90,23 @@ export function initNavbar() {
     }
   }
 
+  let closeTimer;
+
   function openMenu() {
+    clearTimeout(closeTimer);
     menu.hidden = false;
+    // next frame, so the browser sees the closed state first and animates from it
+    requestAnimationFrame(() => menu.classList.add('is-open'));
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
     qs('.mobile-menu__close', menu)?.focus();
   }
 
   function closeMenu() {
-    menu.hidden = true;
+    menu.classList.remove('is-open');
+    closeTimer = setTimeout(() => {
+      menu.hidden = true;
+    }, MENU_CLOSE_MS);
     burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     burger.focus();

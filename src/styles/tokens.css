@@ -1,25 +1,36 @@
 :root {
-  --bg: #0a0a0b;
-  --bg-2: #111114;
-  --bg-card: #16161a;
-  --bg-elev: #1c1c22;
-  --ink: #f5f5f7;
-  --ink-2: #b8b8c0;
-  --ink-3: #8a8a93;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.16);
-  --accent: #c6f432;
-  --accent-ink: #0a0a0b;
-  --accent-glow: rgba(198, 244, 50, 0.18);
+  /* Light and simple: white ground, near-black ink, one violet accent
+     (the same violet family as the backdrop of Alaa's videos). */
+  --bg: #ffffff;
+  --bg-2: #f7f7f9;
+  --bg-card: #fafafc;
+  --bg-elev: #f1f1f5;
+  --bg-glass: rgba(255, 255, 255, 0.62);
+  --bg-glass-strong: rgba(255, 255, 255, 0.9);
+  --ink: #0e0e12;
+  --ink-2: #474752;
+  --ink-3: #6f6f7b;
+  --line: rgba(14, 14, 18, 0.09);
+  --line-strong: rgba(14, 14, 18, 0.18);
+  --accent: #6d28d9;
+  /* on a light ground the "light" accent is the darker text-safe violet */
+  --accent-light: #5b21b6;
+  --accent-deep: #4c1d95;
+  --accent-ink: #ffffff;
+  --accent-glow: rgba(109, 40, 217, 0.16);
+  --accent-gradient: linear-gradient(120deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%);
+  --emerald: #c4b5fd;
   --whatsapp: #25d366;
+  --shadow-card: 0 28px 56px -32px rgba(40, 22, 90, 0.3);
 
-  --radius-lg: 24px;
-  --radius: 16px;
-  --radius-sm: 10px;
+  --radius-lg: 10px;
+  --radius: 6px;
+  --radius-sm: 4px;
   --radius-pill: 999px;
 
-  --font-display: 'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif;
-  --font-body: 'Inter', 'IBM Plex Sans Arabic', sans-serif;
+  --font-display: 'Instrument Serif', 'Alexandria', serif;
+  --font-numeric: 'Instrument Serif', serif;
+  --font-body: 'Geist', 'IBM Plex Sans Arabic', sans-serif;
   --font-ar: 'IBM Plex Sans Arabic', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -27,7 +38,7 @@
   --container: 1200px;
 
   /* fluid type scale */
-  --fs-hero: clamp(2.6rem, 6vw, 5.2rem);
+  --fs-hero: clamp(2.7rem, 6.2vw, 5.6rem);
   --fs-h2: clamp(2rem, 4vw, 3.25rem);
   --fs-h3: clamp(1.4rem, 2.2vw, 1.9rem);
   --fs-lead: clamp(1.05rem, 1.4vw, 1.25rem);
@@ -55,6 +66,8 @@
 }
 
 html[lang='ar'] {
-  --font-display: 'IBM Plex Sans Arabic', 'Space Grotesk', sans-serif;
-  --font-body: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+  --fs-h2: clamp(1.7rem, 3.2vw, 2.6rem);
+  --fs-h3: clamp(1.15rem, 1.7vw, 1.45rem);
+  --font-display: 'Alexandria', 'Instrument Serif', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Geist', sans-serif;
 }

@@ -3,6 +3,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
+  line-height: 1.6;
   position: relative;
   overflow-x: hidden;
 }
@@ -14,7 +15,7 @@ body::before {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -24,14 +25,22 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.1;
+  font-weight: 500;
+  line-height: 1.08;
   color: var(--ink);
+}
+
+html[lang='ar'] h1,
+html[lang='ar'] h2,
+html[lang='ar'] h3,
+html[lang='ar'] h4 {
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 html:not([lang='ar']) h1,
 html:not([lang='ar']) h2 {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.012em;
 }
 
 p {
@@ -59,4 +68,20 @@ a {
 
 .accent {
   color: var(--accent);
+}
+
+/* Brass numerals: every proof number on the site shares this treatment. */
+.gilt {
+  font-family: var(--font-numeric);
+  font-weight: 400;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Arabic has no monospace companion in this type system, so small labels fall back to the body face. */
+html[lang='ar'] .mono {
+  font-family: var(--font-body);
 }

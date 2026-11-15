@@ -42,9 +42,9 @@
 .bg-orbs__orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.22;
-  background: var(--accent);
+  filter: blur(120px);
+  opacity: 0.45;
+  background: var(--emerald);
 }
 
 .bg-orbs__orb--a {
@@ -60,7 +60,8 @@
   height: 380px;
   bottom: -100px;
   inset-inline-start: -80px;
-  opacity: 0.14;
+  opacity: 0.3;
+  background: #ddd6fe;
   animation: orb-drift-b 32s ease-in-out infinite;
 }
 

@@ -34,17 +34,19 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--bg-elev);
-  border: 1px solid var(--accent);
+  background: transparent;
+  border: 1px solid var(--line-strong);
   color: var(--accent);
-  font-size: var(--fs-micro);
+  font-family: var(--font-numeric);
+  font-size: var(--fs-small);
   margin-block-end: var(--space-3);
 }
 
 .timeline-card__year {
   display: block;
-  color: var(--ink-3);
-  font-size: var(--fs-micro);
+  color: var(--accent-light);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
   margin-block-end: var(--space-2);
 }
 

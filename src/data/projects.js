@@ -22,16 +22,16 @@ export const projects = [
       ar: ['كتالوج كبير', 'متجر عربي RTL', 'B2B/B2C'],
     },
     oneLiner: {
-      en: 'An Arabic-first store for a large, multi-category catalog.',
-      ar: 'متجر عربي بكتالوج كبير متعدد الفئات.',
+      en: 'A huge power-tool catalog, organized so a professional finds the right tool fast.',
+      ar: 'كتالوج عدد كبير، متقسم بحيث المحترف يوصل للعدة اللي عايزها بسرعة.',
     },
     whatIBuilt: {
-      en: 'An Arabic-first store for the sole official importer of the global EMTOP brand. It has a large multi-category catalog (cordless, electric, air tools, hand tools, measuring, safety), warranty and cash-on-delivery trust signals, and easy browsing for professionals.',
-      ar: 'متجر عربي للمستورد الرسمي الوحيد لماركة EMTOP العالمية. فيه كتالوج كبير متقسم لفئات (عدد لاسلكية، كهربائية، هوائية، يدوية، أدوات قياس، سلامة)، ضمان ودفع عند الاستلام، وتصفح سهل للمحترفين.',
+      en: 'An Arabic-first store for the sole official importer of EMTOP in Egypt. The catalog is split into clear families (cordless, electric, air tools, hand tools, measuring, safety), so browsing feels like walking the aisles of a tool shop. Warranty and cash on delivery are shown up front, because that is what a buyer checks before trusting a new store.',
+      ar: 'متجر عربي للمستورد الرسمي الوحيد لـ EMTOP في مصر. الكتالوج متقسم لعائلات واضحة (لاسلكي، كهربائي، هوائي، يدوي، قياس، سلامة)، فالتصفح بقى زي ما تكون ماشي بين رفوف محل عدد. والضمان والدفع عند الاستلام ظاهرين من أول لحظة، لأن دي أول حاجة العميل بيدوّر عليها قبل ما يثق في متجر جديد.',
     },
     result: {
-      en: 'A large catalog organized so professionals reach what they need fast.',
-      ar: 'كتالوج كبير متقسم بشكل يسهّل على المحترفين يوصلوا للي محتاجينه.',
+      en: 'A catalog this large now reads as simple: pick a category, find the tool, order.',
+      ar: 'كتالوج بالحجم ده بقى بسيط: تختار القسم، تلاقي العدة، وتطلب.',
     },
   },
   {
@@ -57,16 +57,16 @@ export const projects = [
       ar: ['متجر سعودي', 'عربي RTL', 'تابي/تمارا', 'طلب عروض أسعار'],
     },
     oneLiner: {
-      en: 'A premium Arabic store for the Saudi market.',
-      ar: 'متجر عربي فخم للسوق السعودي.',
+      en: 'A premium Arabic storefront built around how Saudi customers browse, pay and ask for quotes.',
+      ar: 'متجر عربي فخم مبني على طريقة العميل السعودي في التصفح والدفع وطلب الأسعار.',
     },
     whatIBuilt: {
-      en: 'A store for one of the Al Rajhi group companies, specialized in luxury doors, windows, and décor. It includes Tabby/Tamara installments, price-quote requests, and a premium Arabic experience for Saudi customers.',
-      ar: 'متجر لإحدى شركات مجموعة الراجحي، متخصص في الأبواب والشبابيك والديكورات الفاخرة. فيه تقسيط تابي وتمارا، طلب عروض أسعار، وتجربة عربية فخمة للعميل السعودي.',
+      en: 'A store for one of the Al Rajhi group companies, specialized in luxury doors, windows and décor. These are considered purchases, so the store sells in two ways: Tabby and Tamara installments for buyers ready to order, and a price-quote request for custom work. The whole experience is Arabic-first and styled like the product itself: calm, spacious, premium.',
+      ar: 'متجر لإحدى شركات مجموعة الراجحي، متخصص في الأبواب والشبابيك والديكورات الفاخرة. المنتجات دي قرارها مش سريع، فالمتجر بيبيع بطريقتين: تقسيط تابي وتمارا للي جاهز يطلب، وطلب عرض سعر للشغل المخصوص. والتجربة كلها عربية، هادية وفخمة زي المنتج نفسه.',
     },
     result: {
-      en: 'A premium storefront built for how Saudi customers shop and pay.',
-      ar: 'متجر فخم مبني على إزاي العميل السعودي بيتسوق ويدفع.',
+      en: 'A storefront that feels as premium as the doors it sells, with a clear next step for every kind of buyer.',
+      ar: 'متجر شكله فخم زي الأبواب اللي بيبيعها، وفيه خطوة واضحة لكل نوع عميل.',
     },
   },
   {
@@ -94,20 +94,20 @@ export const projects = [
       ar: ['ريديزاين', 'فانل مبيعات', 'CRO', 'نظام ثقة'],
     },
     oneLiner: {
-      en: 'A full redesign and trust-first funnel that turned visits into buyers.',
-      ar: 'ريديزاين كامل وفانل بتبني ثقة، حوّلنا بيها الزيارات لعملاء.',
+      en: 'A trust-first redesign that turned visitors into buyers and grew sales 5x.',
+      ar: 'ريديزاين مبني على الثقة، حوّل الزوار لمشترين وضاعف المبيعات 5 أضعاف.',
     },
     challenge: {
-      en: "The brand had traffic, but visitors weren't turning into buyers, and the old store didn't build enough trust to compete.",
-      ar: 'البراند كان عنده زيارات، بس الزوار مكنوش بيتحولوا لعملاء، والمتجر القديم مكنش بيبني ثقة كفاية علشان ينافس.',
+      en: 'The traffic was there, the sales were not. Visitors landed, looked around and left, because the old store gave them no reason to trust a brand they had just met.',
+      ar: 'الزيارات موجودة بس المبيعات لأ. الزائر كان بيدخل يتفرج ويمشي، لأن المتجر القديم ما كانش مديله سبب يثق في براند لسه شايفه لأول مرة.',
     },
     whatIBuilt: {
-      en: 'A full redesign and a complete customer funnel built around trust: a clear product page with a size guide, related-product upsells, visible shipping and 14-day return policies, a free-shipping threshold, and a direct WhatsApp line.',
-      ar: 'ريديزاين كامل وفانل متكاملة للعميل بتخليه يثق في البراند: صفحة منتج واضحة مع دليل مقاسات، منتجات مقترحة، سياسة شحن ومرتجعات واضحة لـ14 يوم، حد أدنى للشحن المجاني، وخط واتساب مباشر.',
+      en: 'A full redesign and a funnel where every step answers a doubt. A clear product page with a size guide, so no one guesses their size. Shipping and the 14-day return policy in plain sight. A free-shipping threshold and related products to lift the order. A direct WhatsApp line for anyone who still has a question.',
+      ar: 'ريديزاين كامل وفانل كل خطوة فيها بترد على شك عند العميل. صفحة منتج واضحة فيها دليل مقاسات، فمحدش يخمّن مقاسه. سياسة الشحن والاسترجاع خلال 14 يوم ظاهرة قدامه. حد للشحن المجاني ومنتجات مقترحة تكبّر الأوردر. وخط واتساب مباشر للي لسه عنده سؤال.',
     },
     result: {
-      en: 'The brand stayed competitive and grew sales 5x, turning far more visits into paying customers.',
-      ar: 'البراند قدر يكمل في السوق وضاعف مبيعاته 5 أضعاف، وحوّل زيارات أكتر بكتير لعملاء بيشتروا فعلاً.',
+      en: 'Sales grew 5x and the brand held its place in a crowded market, with far more visits ending in an order.',
+      ar: 'المبيعات زادت 5 أضعاف والبراند ثبّت مكانه في سوق زحمة، وزيارات أكتر بكتير بقت بتخلص بأوردر.',
     },
   },
   {
@@ -133,20 +133,20 @@ export const projects = [
       ar: ['بناء متجر كامل', 'إطلاق سريع'],
     },
     oneLiner: {
-      en: 'A complete store, live in under 3 days.',
-      ar: 'متجر كامل، اشتغل في أقل من 3 أيام.',
+      en: 'From nothing to a live, elegant store in under 3 days.',
+      ar: 'من الصفر لمتجر أنيق شغال في أقل من 3 أيام.',
     },
     challenge: {
-      en: 'The owner wanted to launch immediately, with no time for a long build cycle.',
-      ar: 'المطلوب كان الإطلاق فورًا، من غير وقت لدورة بناء طويلة.',
+      en: 'The owner wanted to start selling right away. There was no room for a build that drags on for weeks.',
+      ar: 'المالك كان عايز يبدأ يبيع فورًا، ومفيش وقت لبناء يقعد أسابيع.',
     },
     whatIBuilt: {
-      en: 'A complete, elegant store with collections, best sellers, video product showcases, and seasonal campaign sections, delivered from zero to live.',
-      ar: 'متجر كامل وأنيق فيه كوليكشنز، الأكتر مبيعًا، عرض فيديو للمنتجات، وسكشنز لحملات الموسم، من الصفر لحد الإطلاق.',
+      en: 'A complete store, not a rushed placeholder: collections, a best-sellers section, video product showcases and seasonal campaign sections, taken from zero to live.',
+      ar: 'متجر كامل مش نسخة مستعجلة: كوليكشنز، سكشن الأكتر مبيعًا، عرض المنتجات بالفيديو، وسكشنز لحملات الموسم، من الصفر لحد ما اشتغل.',
     },
     result: {
-      en: 'Fully live in under 3 days.',
-      ar: 'اشتغل بالكامل في أقل من 3 أيام.',
+      en: 'Fully live in under 3 days, ready for its first orders.',
+      ar: 'اشتغل بالكامل في أقل من 3 أيام، وجاهز يستقبل أوردرات.',
     },
   },
   {
@@ -172,16 +172,16 @@ export const projects = [
       ar: ['بناء متجر', 'فانل مبيعات', 'استهداف شعبي'],
     },
     oneLiner: {
-      en: 'A full funnel speaking the mass-market customer’s language.',
-      ar: 'فانل كاملة بتخاطب الفئة الشعبية بلغتها.',
+      en: 'A funnel that talks the way its customers talk: 1000+ orders in under 3 months.',
+      ar: 'فانل بتكلم العميل بلغته: +1000 أوردر في أقل من 3 شهور.',
     },
     challenge: {
-      en: 'Reaching a broad, mass-market Egyptian audience that buys with confidence only when the experience feels familiar and simple.',
-      ar: 'الوصول لجمهور شعبي وواسع في مصر، بيشتري بثقة بس لما التجربة تكون بسيطة ومألوفة.',
+      en: 'The audience is broad and mass-market. These customers buy with confidence only when the store feels familiar and simple.',
+      ar: 'الجمهور واسع وشعبي، وبيشتري بثقة بس لما المتجر يبقى بسيط ومألوف ليه.',
     },
     whatIBuilt: {
-      en: 'A full funnel written and designed to speak the language of the mass-market customer: clear offers and discounts, WhatsApp order confirmation, local payment (InstaPay), and fast-delivery messaging.',
-      ar: 'فانل كاملة اتكتبت واتصممت بلغة الفئة الشعبية: عروض وخصومات واضحة، تأكيد الأوردر على واتساب، دفع محلي (InstaPay)، ورسائل توصيل سريع.',
+      en: 'A full funnel written and designed in the customer’s own language. Offers and discounts you understand at a glance. Order confirmation on WhatsApp, where they already are. InstaPay as a local way to pay. Fast-delivery messaging at every step.',
+      ar: 'فانل كاملة مكتوبة ومتصممة بلغة العميل نفسه. عروض وخصومات تتفهم من أول نظرة. تأكيد الأوردر على واتساب، المكان اللي هو فيه أصلًا. دفع بـ InstaPay. ورسايل التوصيل السريع في كل خطوة.',
     },
     result: {
       en: '1000+ orders in under 3 months.',

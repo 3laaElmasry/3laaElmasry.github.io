@@ -1,6 +1,7 @@
 .footer {
   border-block-start: 1px solid var(--line);
-  padding-block: var(--space-6);
+  padding-block: var(--space-7);
+  background: var(--bg-2);
 }
 
 .footer__inner {

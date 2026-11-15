@@ -12,6 +12,12 @@ This file is kept up to date as the **current** source of truth, not just the or
 
 ---
 
+## Admin dashboard and database (added 2026-11-15)
+
+Projects, skill groups, social links and contact details are now **edited from `/admin`** and stored in Supabase; `src/data/projects.js`, `skills.js`, `socials.js` and the contact fields of `site.js` are only the bundled fallback and the seed source. Read content through `src/content/store.js` (`getProjects()`, `getSkillGroups()`, `getSocials()`, `getSite()`), never by importing those data files into a component. The database schema and its security policies are in `supabase/schema.sql`; see the last entry in `DECISIONS.md` for how it fits together. The facts and hard rules in sections 2, 3 and 10 still govern anything written into the bundled data.
+
+---
+
 ## 0. Operating mode: work autonomously, end to end
 
 - The owner has pre-approved this whole task. **Do not stop to ask for confirmation** between phases. Make sensible decisions, note them in `DECISIONS.md`, and keep going.
@@ -274,8 +280,9 @@ Put this in `src/data/projects.js` as structured data with `en` and `ar` fields.
 3. **Stats strip**: 4 counters that animate once when visible: `20+` Brands · `20K+` Followers · `5x` Sales growth · `1000+` Orders. Now a carousel (see note above); the counter animation still works because `initCounters()` observes `[data-counter]` elements regardless of the scroll container.
 4. **Brands marquee**: an infinite, slow scrolling row of the 5 brand names in stylized text (no fake logos). It pauses on hover and is disabled with `prefers-reduced-motion`. (Not a carousel — it's already a continuous scroll.)
 5. **Selected Work (`#work`)**: section 3. Title: "Selected Work" / "شغل مختار". Subtitle: "Real brands. Real numbers." / "براندات حقيقية. أرقام حقيقية." **Stays as static cards — the one section excluded from the carousel conversion.** (A chat-bot redesign of this section was tried and explicitly rejected by the owner; see `DECISIONS.md`. Do not re-attempt it without being asked.)
-6. **Services (`#services`)**: 4 cards, now a carousel. Each card shows a real screenshot of a free Shopify Theme Store demo (Dawn, Craft, Sense, Origin) above the icon/title/description — **never a Shopify logo**. The image uses a plain top-fade treatment, deliberately not the `BrowserFrame` browser-chrome-plus-domain treatment used for real client projects, so visitors don't mistake a generic theme demo for client work.
+6. **Services (`#services`)**: 5 cards, now a carousel. Each card shows a real screenshot of a free Shopify Theme Store demo (Dawn, Craft, Sense, Origin) above the icon/title/description — **never a Shopify logo**. The image uses a plain top-fade treatment, deliberately not the `BrowserFrame` browser-chrome-plus-domain treatment used for real client projects, so visitors don't mistake a generic theme demo for client work.
    - Custom Shopify Store Build / بناء متجر Shopify من الصفر
+   - Theme Design from Scratch / تصميم ثيم Shopify من الصفر (added 2026-11-15): a design made for the brand, then coded into a full Shopify theme. Its card has no theme screenshot; it renders the `DesignToTheme.js` design-to-code illustration instead.
    - Redesign & Rebrand / ريديزاين للمتجر
    - Sales Funnel & CRO / فانل وتحسين التحويل
    - Custom Liquid Sections (no app bloat) / سكشنز Liquid مخصوصة من غير تطبيقات تقيلة
@@ -311,9 +318,15 @@ Put this in `src/data/projects.js` as structured data with `en` and `ar` fields.
 
 ## 6. Design system
 
-### Direction: Dark Premium
+### Direction: Light and simple (owner-requested, 2026-11-15)
 
-Moody, confident, and tech-forward. Lots of breathing room and big type. The accent color is used sparingly, mostly on numbers and CTAs.
+White ground, near-black ink, one violet accent from the same family as the backdrop of Alaa's videos. Simple and clean first; the premium feel comes from the type and the spacing, not from effects. Three dark palettes were tried the same day (green/brass, sapphire, dark violet) and the owner rejected all of them in favor of white; do not go back to a dark theme without being asked.
+
+> The token block below is the **original** lime-on-black system and is kept for history only. The live values are in `src/styles/tokens.css`: `--bg #ffffff`, `--ink #0e0e12`, `--accent #6d28d9` (with `--accent-gradient` for numerals and the primary button, white text on it). **Fonts:** display **Instrument Serif** (EN) / **Alexandria** (AR), body **Geist** (EN) / **IBM Plex Sans Arabic** (AR), mono **JetBrains Mono** only for browser bars and dev cards. The owner explicitly does not want Cairo for Arabic. Alexandria is wide, so Arabic headings run a size smaller than English (see the `html[lang='ar']` overrides). Radii are small (4–10px); chips, tags and everything inside the header are pills.
+>
+> **Header:** a floating glass pill, detached from the top and both sides, that narrows slightly on scroll and highlights the link of the section on screen (`utils/navScroll.js`). The mobile menu opens as a circle growing from the burger's corner, then its links rise in one by one.
+>
+> **Motion added 2026-11-15:** hero headline rises in word by word; project cards enter from alternating sides; screenshots settle from a slight zoom as they scroll into view (CSS scroll timelines, progressive enhancement); a pointer-following light on project and service cards (`utils/spotlight.js`); a thin page-progress bar. All of it is switched off under `prefers-reduced-motion`.
 
 ### Tokens (`src/styles/tokens.css`)
 
@@ -412,7 +425,8 @@ Moody, confident, and tech-forward. Lots of breathing room and big type. The acc
 ├── public/
 │   ├── favicon.svg
 │   ├── og-image.jpg             # 1200×630, name + title + portrait
-│   └── robots.txt
+│   ├── robots.txt
+│   └── sitemap.xml
 └── src/
     ├── main.js                  # bootstraps: i18n → render sections → init effects
     ├── app.js                   # composes sections in order

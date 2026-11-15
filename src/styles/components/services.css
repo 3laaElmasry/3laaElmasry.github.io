@@ -26,6 +26,7 @@
 .service-card:hover {
   border-color: var(--line-strong);
   transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
 }
 
 .service-card__media {
@@ -56,8 +57,9 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-sm);
-  background: var(--bg-elev);
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
   color: var(--accent);
   margin-block-end: var(--space-4);
 }

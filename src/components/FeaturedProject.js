@@ -3,9 +3,9 @@ import { icon } from '../utils/icons.js';
 import { BrowserFrame } from './BrowserFrame.js';
 
 export function FeaturedProject(project, lang) {
-  const metricBlock = project.metric
-    ? `<div class="featured-project__metric"><span class="featured-project__metric-value">${project.metric.value}</span> ${project.metric.label[lang]}</div>`
-    : `<div class="featured-project__metric featured-project__metric--highlight">${project.highlight[lang]}</div>`;
+  const metricBlock = project.metric?.value
+    ? `<div class="featured-project__metric"><span class="featured-project__metric-value">${project.metric.value}</span> ${project.metric.label?.[lang] || ''}</div>`
+    : `<div class="featured-project__metric featured-project__metric--highlight">${project.highlight?.[lang] || ''}</div>`;
 
   return `
     <article class="featured-project reveal" data-project-id="${project.id}">
@@ -30,9 +30,9 @@ export function FeaturedProject(project, lang) {
         <p class="featured-project__category mono">${project.category[lang]}</p>
         <h3 class="featured-project__title">${project.name}</h3>
         ${metricBlock}
-        <p class="featured-project__oneliner">${project.oneLiner[lang]}</p>
+        <p class="featured-project__oneliner">${project.oneLiner?.[lang] || ''}</p>
         <div class="chip-row featured-project__tags">
-          ${project.tags[lang].map((tag) => `<span class="tag">${tag}</span>`).join('')}
+          ${(project.tags?.[lang] || []).map((tag) => `<span class="tag">${tag}</span>`).join('')}
         </div>
         <div class="featured-project__actions">
           <a class="btn btn--primary" href="${project.url}" target="_blank" rel="noopener">

@@ -1,6 +1,8 @@
 .browser-frame {
   border-radius: var(--radius);
   overflow: hidden;
+  /* keeps the scroll-linked zoom clipped to the rounded frame */
+  isolation: isolate;
   border: 1px solid var(--line);
   background: var(--bg-elev);
 }
@@ -26,13 +28,13 @@
 }
 
 .browser-frame__dot--red {
-  background: #ff5f57;
+  background: rgba(109, 40, 217, 0.55);
 }
 .browser-frame__dot--yellow {
-  background: #febc2e;
+  background: rgba(109, 40, 217, 0.35);
 }
 .browser-frame__dot--green {
-  background: #28c840;
+  background: rgba(109, 40, 217, 0.2);
 }
 
 .browser-frame__domain {

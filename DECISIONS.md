@@ -82,3 +82,33 @@ Owner: "خلي كل الاقسام كاروسيل ... عدا الاستورز س
 Converted every remaining static grid into a carousel using the shared `utils/carousel.js` / `CarouselNav.js` / `carousel.css` infrastructure: StatsStrip (4 stats), Process (4 steps), Engineering's proof row (3 stats), Skills groups and Dev Projects (already done in the previous round), About's Timeline (rewritten from a vertical connected-line list into horizontal numbered cards — the vertical "journey" metaphor didn't survive the conversion, but the owner's instruction was explicit and unqualified) and its Markets/Education meta pair, and Contact's 3 contact cards. Left untouched: Work (explicitly excluded), Hero/Navbar/Footer (not card grids), BrandsMarquee (already a continuous scroll, effectively a carousel already), and the single-item Experience Card (nothing to paginate with just one card).
 
 **Bug found and fixed during this pass:** `.about__grid`'s single-column mobile track was a bare `1fr`, and now that `.about__main` (the grid item) contains carousel tracks with wide flex content, the grid's min-content floor forced the whole page to overflow horizontally at 360-1024px (up to 767px wide inside a 390px viewport). This is the same class of bug fixed earlier in `work.css`/`hero.css`/`layout.css` — switched to `minmax(0, 1fr)` (and `minmax(0, 1fr) 300px` at the 900px+ two-column breakpoint). Re-verified the full 360/390/768/1024/1440 × EN/AR overflow sweep is clean after the fix.
+
+
+## 2026-11-15 — Redesign, motion, new service (owner request)
+
+> **Final state of the palette and fonts (later the same day):** the owner dropped the dark theme entirely and asked for a simple white site with good fonts, no Cairo. Live tokens: white ground, `#0e0e12` ink, violet `#6d28d9` accent. Fonts: Instrument Serif + Geist (EN), Alexandria + IBM Plex Sans Arabic (AR). The palette and type bullets below describe the dark rounds that led here and are kept as history; the header, motion, copy and service notes still apply.
+
+- **Palette went through three rounds in one day.** Bottle-green with brass, then midnight sapphire, were both rejected. The owner then shared the magenta-purple backdrop of his videos, and the palette was rebuilt from it: aubergine black `#0a0612`, cool white ink, violet-magenta accent `#c44dff`. The ground stays dark and the violet lives in glows, buttons and numbers, because a fully saturated purple page would bury the store screenshots.
+- **Type:** Bodoni Moda (EN) and El Messiri (AR) for display, Jost (EN) and IBM Plex Sans Arabic (AR) for body. Numerals use Bodoni at a low optical size (`'opsz' 11`), because the display cut made `+`, `×` and `<` nearly invisible.
+- **Portrait frame removed** (owner disliked the hairline arch). The portrait is a soft rounded rectangle that fades into the ground.
+- **Radii tightened** (24/16/10px to 10/6/4px); buttons are near-square except inside the header.
+- **Floating glass header** replaces the full-width sticky bar: detached from the top and sides, pill-shaped, blurred, with a border, narrowing slightly on scroll. Active-section highlighting and the progress bar live in `utils/navScroll.js`, which also tears down its listeners on re-render (the old inline scroll listener leaked one per language switch).
+- **Mobile menu** animates open (circle from the burger corner, staggered links). `hidden` is still set after the close transition so focus trapping and screen readers behave as before; the 320ms in `Navbar.js` must match the CSS.
+- **Project motion** lives in `project-motion.css`: alternating-side entrances, scroll-linked screenshot zoom behind `@supports (animation-timeline: view())`, pointer spotlight.
+- **Project copy rewritten** in both languages (one-liners, challenge, what I built, result). Facts and numbers are unchanged from CLAUDE.md section 3.
+- **Stats strip** lost its card boxes (hairline dividers) and hides its arrows from 640px up, where all four fit.
+- **Bidi fix:** project metric values (`×5`, `< 3 days`) are isolated LTR; they were rendering reversed in Arabic.
+- **New service "Theme Design from Scratch"** (`id: 'theme'`), placed second. `DesignToTheme.js` draws a wireframe-to-Liquid illustration instead of borrowing another theme demo.
+- Fonts still load from Google Fonts; no new dependencies were added.
+
+## 2026-11-15 — Admin dashboard, Supabase content, Vercel (owner request)
+
+- **What is editable:** projects, skill groups, social links and contact details (WhatsApp number and prefilled message, phone, email). The owner asked for exactly these; services, process, stats and the rest of the copy stay in code.
+- **Where it lives:** `/admin` (`admin.html` + `src/admin/`), a second Vite entry. It is the only place `@supabase/supabase-js` is loaded; the public site reads content with four plain `fetch` calls (`src/content/remote.js`) so it does not carry the client library.
+- **The site never depends on the database being up.** `src/content/store.js` starts from the last content this browser cached, or else from the bundled `src/data/*.js`, renders, then refreshes from Supabase and re-renders only if something changed. An empty database is treated as "not set up yet", not as "show nothing".
+- **Security model** (`supabase/schema.sql`): row-level security on every table; anyone can read, and writes require the signed-in user to be listed in `public.admins`. Being signed in is not enough, so an open sign-up cannot edit anything. The publishable key in `src/config/supabase.js` is public by design; a secret key must never be added to the repo.
+- **Images:** screenshots uploaded from the dashboard go to the public `project-images` storage bucket and are stored as full URLs; the original five projects keep pointing at the bundled files. `getProjectImage()` accepts both.
+- **Seed:** `npm run build-seed` regenerates `supabase/seed.sql` from `src/data`; `supabase/setup.sql` is schema + seed in one file. Seed rows use `on conflict do nothing`, so re-running never overwrites dashboard edits.
+- **Brands marquee** now lists the project names from the store, so a project added in the dashboard shows up there too.
+- **Hosting:** `vercel.json` sets `cleanUrls`, which serves the dashboard at `/admin`. On GitHub Pages it is reachable at `/admin.html`.
+- **New dependency:** `@supabase/supabase-js` pinned to an exact version (owner-requested feature; the "no extra deps" rule in CLAUDE.md section 8 predates it).

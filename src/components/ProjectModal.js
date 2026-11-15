@@ -38,18 +38,18 @@ function renderModalContent(project, lang) {
       ${secondaryMobile ? `<img src="${secondaryMobile}" alt="${project.name} product page mobile" class="modal__img modal__img--mobile" loading="lazy" />` : ''}
     </div>
     ${
-      project.challenge
+      project.challenge?.[lang]
         ? `<section class="modal__section"><h3>${t('modal.challenge')}</h3><p>${project.challenge[lang]}</p></section>`
         : ''
     }
-    <section class="modal__section"><h3>${t('modal.whatIBuilt')}</h3><p>${project.whatIBuilt[lang]}</p></section>
+    <section class="modal__section"><h3>${t('modal.whatIBuilt')}</h3><p>${project.whatIBuilt?.[lang] || ''}</p></section>
     ${
-      project.result
+      project.result?.[lang]
         ? `<section class="modal__section"><h3>${t('modal.result')}</h3><p>${project.result[lang]}</p></section>`
         : ''
     }
     <div class="chip-row modal__tags">
-      ${project.tags[lang].map((tag) => `<span class="tag">${tag}</span>`).join('')}
+      ${(project.tags?.[lang] || []).map((tag) => `<span class="tag">${tag}</span>`).join('')}
     </div>
     <a class="btn btn--primary modal__cta" href="${project.url}" target="_blank" rel="noopener">
       ${t('modal.visitStore')} ${icon('arrowUpRight')}

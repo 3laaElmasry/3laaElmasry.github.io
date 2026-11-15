@@ -1,12 +1,12 @@
 import { t } from '../i18n/index.js';
-import { icon } from '../utils/icons.js';
+import { icon, socialIcon } from '../utils/icons.js';
 import { getWhatsAppUrl } from '../utils/whatsapp.js';
-import { site } from '../data/site.js';
-import { socials } from '../data/socials.js';
+import { getSite, getSocials } from '../content/store.js';
 import { CarouselNav } from './CarouselNav.js';
 import { initCarousel } from '../utils/carousel.js';
 
 export function Contact(lang) {
+  const site = getSite();
   const telHref = `tel:${site.phone.replace(/\s+/g, '')}`;
 
   return `
@@ -42,11 +42,11 @@ export function Contact(lang) {
         <div class="contact__socials reveal">
           <h3 class="contact__socials-title mono">${t('contact.socialsTitle')}</h3>
           <div class="contact__socials-row">
-            ${socials
+            ${getSocials()
               .map(
                 (social) => `
                   <a class="contact__social-link" href="${social.url}" target="_blank" rel="noopener" aria-label="${social.label}">
-                    ${icon(social.id)}
+                    ${socialIcon(social.icon)}
                   </a>
                 `
               )

@@ -1,21 +1,21 @@
 import { t } from '../i18n/index.js';
-import { icon } from '../utils/icons.js';
-import { site } from '../data/site.js';
-import { socials } from '../data/socials.js';
+import { socialIcon } from '../utils/icons.js';
+import { getSite, getSocials } from '../content/store.js';
 
 export function Footer(lang) {
   const year = new Date().getFullYear();
+  const site = getSite();
 
   return `
     <footer class="footer">
       <div class="container footer__inner">
         <p class="footer__copy">© ${year} ${site.name[lang]}. ${t('footer.rights')}</p>
         <div class="footer__socials">
-          ${socials
+          ${getSocials()
             .map(
               (social) => `
             <a class="footer__social" href="${social.url}" target="_blank" rel="noopener" aria-label="${social.label}">
-              ${icon(social.id)}
+              ${socialIcon(social.icon)}
             </a>
           `
             )

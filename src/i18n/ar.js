@@ -65,10 +65,16 @@ export const ar = {
     prev: 'الخدمة السابقة',
     next: 'الخدمة التالية',
     themeImageAlt: 'مثال لواجهة متجر Shopify',
+    designToThemeAlt: 'ديزاين صفحة على الشمال بيتحول لكود ثيم Shopify على اليمين',
     items: {
       build: {
         title: 'بناء متجر Shopify من الصفر',
         description: 'متجر مبني مخصوص على براندك وعميلك، مش تمبلت جاهز.',
+      },
+      theme: {
+        title: 'تصميم ثيم Shopify من الصفر',
+        description:
+          'بصمم شكل متجرك من ورقة بيضا على مقاس براندك، وبحوّل الديزاين ده لثيم Shopify كامل. ثيم بتاعك لوحدك، مش تمبلت أي حد يشتريه.',
       },
       redesign: {
         title: 'ريديزاين للمتجر',

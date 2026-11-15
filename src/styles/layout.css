@@ -13,7 +13,7 @@
 
 section {
   position: relative;
-  padding-block: var(--space-9);
+  padding-block: 112px;
   z-index: 2;
 }
 
@@ -29,12 +29,23 @@ section {
 }
 
 .section-head__eyebrow {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-  margin-block-end: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-block-end: var(--space-4);
+}
+
+/* a short brass rule leads into each section label */
+.section-head__eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.7;
 }
 
 html[lang='ar'] .section-head__eyebrow {

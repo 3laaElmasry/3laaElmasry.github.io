@@ -13,6 +13,7 @@ import { WhatsAppFab } from './components/WhatsAppFab.js';
 import { ProjectModal, initProjectModal } from './components/ProjectModal.js';
 import { initReveal } from './utils/reveal.js';
 import { initCounters } from './utils/counter.js';
+import { initSpotlight } from './utils/spotlight.js';
 
 export function renderApp(lang) {
   const app = document.getElementById('app');
@@ -46,4 +47,5 @@ export function renderApp(lang) {
   initProjectModal(lang);
   initReveal();
   initCounters();
+  initSpotlight();
 }

@@ -28,7 +28,8 @@ html[dir='rtl'] .marquee__track {
 }
 
 .marquee__item {
-  font-family: var(--font-mono);
+  font-family: var(--font-numeric);
+  font-style: italic;
   font-size: var(--fs-h3);
   color: var(--ink-3);
   white-space: nowrap;

@@ -1,30 +1,64 @@
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 120;
+  height: 2px;
+  background: var(--accent-gradient);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left center;
+}
+
+html[dir='rtl'] .scroll-progress {
+  transform-origin: right center;
+}
+
+/* Floating glass header: detached from the top and both sides. */
 .navbar {
   position: sticky;
-  top: 0;
+  top: var(--space-4);
   z-index: 100;
-  background: rgba(10, 10, 11, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+  width: min(calc(100% - var(--space-6)), 1160px);
+  margin-inline: auto;
+  margin-block-start: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border: 1px solid var(--line-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 14px 34px -22px rgba(40, 22, 90, 0.35);
+  transition: background var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease),
+    width var(--dur-base) var(--ease);
 }
 
 .navbar--scrolled {
-  border-bottom-color: var(--line);
-  background: rgba(10, 10, 11, 0.82);
+  width: min(calc(100% - var(--space-6)), 1040px);
+  background: var(--bg-glass-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 20px 44px -22px rgba(40, 22, 90, 0.4);
 }
 
-.navbar__inner {
+.navbar .navbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: var(--space-4);
+  padding-block: var(--space-2);
+  padding-inline: var(--space-5) var(--space-2);
+  transition: padding var(--dur-base) var(--ease);
+}
+
+.navbar .btn,
+.navbar .lang-toggle {
+  border-radius: var(--radius-pill);
 }
 
 .navbar__logo {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-family: var(--font-numeric);
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-size: 1.7rem;
+  font-weight: 400;
+  font-style: italic;
   color: var(--ink);
 }
 
@@ -41,12 +75,32 @@
 }
 
 .navbar__link {
+  position: relative;
   font-size: var(--fs-small);
+  letter-spacing: 0.04em;
   color: var(--ink-2);
+  padding-block: var(--space-2);
 }
 
-.navbar__link:hover {
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.navbar__link:hover,
+.navbar__link--active {
   color: var(--ink);
+}
+
+.navbar__link:hover::after,
+.navbar__link--active::after {
+  transform: scaleX(1);
 }
 
 .navbar__actions {
@@ -56,11 +110,11 @@
 }
 
 .lang-toggle {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: var(--fs-small);
   color: var(--ink-2);
   border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-4);
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
@@ -104,11 +158,55 @@
   position: fixed;
   inset: 0;
   z-index: 150;
-  background: var(--bg);
+  background: var(--bg-glass-strong);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  /* opens as a circle growing out of the burger's corner */
+  clip-path: circle(0% at calc(100% - 44px) 44px);
+  opacity: 0;
+  transition: clip-path 320ms var(--ease), opacity 200ms var(--ease);
+}
+
+html[dir='rtl'] .mobile-menu {
+  clip-path: circle(0% at 44px 44px);
+}
+
+.mobile-menu.is-open,
+html[dir='rtl'] .mobile-menu.is-open {
+  clip-path: circle(150% at calc(100% - 44px) 44px);
+  opacity: 1;
+}
+
+html[dir='rtl'] .mobile-menu.is-open {
+  clip-path: circle(150% at 44px 44px);
 }
 
 .mobile-menu[hidden] {
   display: none;
+}
+
+/* links rise in one after another once the panel is open */
+.mobile-menu__links a,
+.mobile-menu__whatsapp {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 360ms var(--ease), transform 360ms var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.mobile-menu.is-open .mobile-menu__links a,
+.mobile-menu.is-open .mobile-menu__whatsapp {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(120ms + var(--i, 5) * 55ms);
+}
+
+.mobile-menu__close {
+  transition: transform 320ms var(--ease);
+  transform: rotate(-90deg);
+}
+
+.mobile-menu.is-open .mobile-menu__close {
+  transform: none;
 }
 
 .mobile-menu__inner {
